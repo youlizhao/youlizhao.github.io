@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lab0 配置Pluto环境 - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="../">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="README.html"><strong>1.</strong> 前言</a></li><li><a href="chapters/01-INTRO.html"><strong>2.</strong> 第一章 无线通信系统简介</a></li><li><a href="chapters/02-SDR.html"><strong>3.</strong> 第二章 SDR简介</a></li><li><a href="chapters/03-PHY.html"><strong>4.</strong> 第三章 OFDM物理层</a></li><li><a href="chapters/04-LLC.html"><strong>5.</strong> 第四章 数据链路层</a></li><li><a href="chapters/05-APP.html"><strong>6.</strong> 第五章 传输层与应用层</a></li><li><a href="labs/lab0_pluto.html" class="active"><strong>7.</strong> Lab0 配置Pluto环境</a></li><li><a href="labs/lab1_sync.html"><strong>8.</strong> Lab1 帧同步实验</a></li><li><a href="labs/lab2_phy.html"><strong>9.</strong> Lab2 物理层实验</a></li><li><a href="labs/lab3_llc.html"><strong>10.</strong> Lab3 链路层实验</a></li><li><a href="labs/project.html"><strong>11.</strong> Project 大作业</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="labs/lab0_pluto.html#lab0-plutosdr环境配置" id="lab0-plutosdr环境配置"><h1>Lab0 PlutoSDR环境配置</h1></a>
+<p>作者：</p>
+<ul>
+<li>游理钊：lizhaoyou@xmu.edu.cn</li>
+<li>汤智榕：ttangzr@163.com</li>
+</ul>
+<p>时间：</p>
+<ul>
+<li>初稿：2022年1月30日</li>
+<li>修正：2022年12月30日</li>
+</ul>
+<a class="header" href="labs/lab0_pluto.html#简介" id="简介"><h3>简介</h3></a>
+<p>ADI Pluto是一种低成本的软件无线电设备，非常适合教学。Pluto可以在Windows系统下运行，也可以在Linux系统下运行，只需要安装好相应的驱动。本课程将采用Python语言进行编程，推荐使用Python 3.7。Python编程的IDE可以使用Pycharm。</p>
+<a class="header" href="labs/lab0_pluto.html#windows-10" id="windows-10"><h3>Windows 10</h3></a>
+<p>1、下载并安装PlutoSDR-M2k-USB-Drivers-v0.8</p>
+<pre><code class="language-bash">https://github.com/analogdevicesinc/plutosdr-m2k-drivers-win/releases/download/v0.8/PlutoSDR-M2k-USB-Drivers.exe
+</code></pre>
+<p>2、下载并安装libiio-0.23.gc14a0f8-Windows-setup</p>
+<pre><code class="language-bash">https://github.com/analogdevicesinc/libiio/releases/download/v0.23/libiio-0.23.gc14a0f8-Windows-setup.exe
+</code></pre>
+<p>3、下载并安装miniconda (主要用于管理Python环境，也可用conda)</p>
+<pre><code class="language-bash">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py37_4.9.2-Windows-x86_64.exe
+</code></pre>
+<p>4、安装必要python packages</p>
+<pre><code class="language-bash">$ conda activate base
+$ pip install pylibiio==0.23.1
+$ pip install pyadi-iio==0.0.12
+$ pip install scipy==1.7.3 numpy==1.21.4
+</code></pre>
+<p>5、插入Pluto硬件，并进行测试</p>
+<pre><code class="language-bash">$ conda activate base
+$ python3
+&gt;&gt;&gt; import adi
+&gt;&gt;&gt; sdr = adi.Pluto('ip:192.168.2.1') # or whatever your Pluto's IP is
+&gt;&gt;&gt; sdr.sample_rate = int(2.5e6)
+&gt;&gt;&gt; sdr.rx()
+</code></pre>
+<a class="header" href="labs/lab0_pluto.html#linux-ubuntu-16041804" id="linux-ubuntu-16041804"><h3>Linux (Ubuntu 16.04/18.04)</h3></a>
+<p>推荐使用裸系统，使用虚拟机会降低性能</p>
+<p>1、下载并安装miniconda (用于管理Python环境，也可用conda)</p>
+<pre><code class="language-bash">$ sudo mkdir -p /opt
+$ sudo chmod -R 777 /opt
+$ wget &quot;https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py37_4.9.2-Linux-x86_64.sh&quot; -O /opt/miniconda3.sh --no-check-certificate
+$ bash /opt/miniconda3.sh
+$ conda activate base
+</code></pre>
+<p>2、安装package依赖</p>
+<pre><code class="language-bash">$ sudo apt-get update
+$ sudo apt-get install git libxml2 libxml2-dev bison flex libcdk5-dev cmake libusb-1.0-0 libusb-1.0-0-dev libavahi-common-dev libavahi-client-dev libaio-dev -y
+</code></pre>
+<p>3、安装libiio</p>
+<pre><code class="language-bash">$ cd /opt/
+$ git clone --branch v0.23 https://gitee.com/ttangzr/libiio.git libiio
+$ cd libiio
+$ cmake ./
+$ make all -j4
+$ sudo make install
+$ sudo ldconfig
+$ cd bindings/python/
+$ sudo python setup.py.cmakein install
+</code></pre>
+<p>4、安装libad9361-iio</p>
+<pre><code class="language-bash">$ cd /opt/
+$ git clone --branch v0.2 https://gitee.com/ttangzr/libad9361-iio.git libad9361-iio
+$ cd libad9361-iio
+$ cmake ./
+$ make -j4
+$ sudo make install
+</code></pre>
+<p>5、安装pyadi-iio等packages</p>
+<pre><code class="language-bash">$ pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple pyadi-iio==0.0.11 scipy==1.7.3 numpy==1.21.4
+</code></pre>
+<p>6、插入Pluto硬件，并进行测试</p>
+<pre><code class="language-bash">$ conda activate base
+$ python3
+&gt;&gt;&gt; import adi
+&gt;&gt;&gt; sdr = adi.Pluto('ip:192.168.2.1') # or whatever your Pluto's IP is
+&gt;&gt;&gt; sdr.sample_rate = int(2.5e6)
+&gt;&gt;&gt; sdr.rx()
+</code></pre>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="chapters/05-APP.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="labs/lab1_sync.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="chapters/05-APP.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="labs/lab1_sync.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>
