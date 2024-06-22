@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title></title>
+</head>
+<body>
+<div id="layout-content">
+<h1>Hands-on Wireless System (Summer 2024)</h1>
+<h1>基于软件无线电的无线通信系统实践 (2024年暑期小学期)</h1>
+<h2>Course Description</h2>
+<p>The goal of this course is to give students hands-on experience in the design, implementation and evaluation of an OFDM wireless communication system through the ADI Pluto software defined radio. Students will learn through lab driven experiments on  software defined radios, and build a real-time system supporting real applications.</p>
+<p>本课程为厦门大学信息学院信息与通信工程系的《专业方向性实践（二）》课程，是为高年级通信专业本科生开设。旨在通过指导同学们在软件无线电平台上完成一个实时无线通信系统（包括物理层、链路层与应用层），提升同学们对通信系统的理解，同时也提升同学们的动手实践能力。</p>
+<p>本课程内容主要参考Princeton大学Kyle Jamieson教授的《COS463: Wireless Networks》课程、UIUC大学Haitham Hassanieh教授的《ECE463: IoT and Software Defined Radio Lab》课程。结合厦大实际情况，确定了如下的课程内容与方式：</p>
+<p>（1）基于ADI Pluto的软件无线电与Python编程语言设计课程内容。学生们在大三上的《通信原理》课程上已熟悉ADI Pluto软件无线电平台，学生们在大三下《专业方向性实践（一）》课程上已熟悉Python语言。虽然Python语言在信号处理效率上远不及C语言或者FPGA的Verilog语言，但是上手容易，而我们的系统实时性要求不高；与Matlab比起来，Python更容易搭建实时系统。</p>
+<p>（2）基于OFDM技术组织课程内容。与传统的数字调制方式（ASK/PSK/FSK）比起来，OFDM会更复杂。但是考虑到OFDM技术已被主流的通信系统（包括无线与水声）所采纳，是前沿技术，也是很多新波形设计的基础。此外，如何处理通信系统的实际因素，比如多径信道、Time Offset、Carrier Frequency Offset，都能通过OFDM系统很好的展示出来。因此本课程以WiFi 802.11a系统为例，通过讲解OFDM的原理与实现细节，贯穿数字通信基本知识（比如信道、调制、编码）。</p>
+<p>（3）采取通信与网络相结合的方式。传统的通信类实践课程往往关注物理层设计，较少涉及MAC层、链路层、网络层、传输层，不能全面体现一个完整的通信系统。基于软件无线电平台提供的全栈开发能力，本课程引入MAC协议、链路层可靠传输协议（自动请求重传协议）、虚拟网卡（TUN/TAP）的技术开发框架，使学生能够对通信系统有全面的理解。</p>
+<p>（4）采用阶梯式开发方式。本课程设计了两个实验，一个大项目，贯穿整个学期。各个环节相互依赖，比如第二个实验依赖第一个实验的结果，大项目依赖前两个实验的结果，将难度分解到平时的各个环节，确保学生能够在期末实现一个有完整度的实时通信系统。</p>
+<h2>Course Info</h2>
+<p><b>Time &amp; Location</b>:</p>
+<ul>
+<li><p>Week 1 and Week 2, 08:00-11:50 (文宣楼（4号楼）A402)</p>
+</li>
+<li><p>Week 3 and Week 4, 08:00-18:20 (西部片区4号楼301)</p>
+</li>
+</ul>
+<p><b>Instructor</b>: Lizhao You (lizhaoyou [AT] xmu.edu.cn)</p>
+<p><b>Lab TA</b>:</p>
+<ul>
+<li><p>Lei Liang (2629788464 [AT] qq.com)</p>
+</li>
+<li><p>Yongguang Wang</p>
+</li>
+</ul>
+<p><b>Prerequisties</b>: basic knowledge of </p>
+<ul>
+<li><p>Digital Signal Processing</p>
+</li>
+<li><p>Principles of Communication</p>
+</li>
+<li><p>Computer Networks</p>
+</li>
+</ul>
+<h2>Contents</h2>
+<ul>
+<li><p>Software Defined Radio</p>
+</li>
+<li><p>Frame Synchronization</p>
+</li>
+<li><p>Wireless Channel</p>
+</li>
+<li><p>OFDM</p>
+</li>
+<li><p>Channel Codes (convolutional code)</p>
+</li>
+<li><p>Wireless MAC Design</p>
+</li>
+<li><p>LLC Design (ARQ protocols)</p>
+</li>
+<li><p>Network Architecture</p>
+</li>
+</ul>
+<h2>Grading</h2>
+<ul>
+<li><p>30% Two Quizzes</p>
+</li>
+<li><p>35% Two Labs (第二个Lab组队完成，每队3人)</p>
+</li>
+<li><p>30% One Project (组队完成，每队3人)</p>
+</li>
+<li><p>5%  Attendence</p>
+</li>
+</ul>
+<h2>Reference Books</h2>
+<p>市面上目前没有完全契合本课程的教科书，采用自编讲义形式。注意本课程没有细致的实验指导手册，只有实验目标与粗略的步骤，本课程的目标就是希望同学们根据课上所学原理自己摸索实现完整通信系统。</p>
+<p>主要有以下参考书：</p>
+<ul>
+<li><p>Ref1: Software-Defined Radio for Engineers <a href="https://www.analog.com/media/en/training-seminars/design-handbooks/Software-Defined-Radio-for-Engineers-2018/SDR4Engineers.pdf">[EN]</a>（对软件无线电原理与通信系统的诸多实际约束有描述，SDR架构介绍的较详细）</p>
+</li>
+<li><p>Ref2: PySDR: A Guide to SDR and DSP using Python <a href="https://pysdr.org/">[EN]</a>（对软件无线电原理有简洁的描述，对Python操作SDR介绍较详细）</p>
+</li>
+<li><p>Ref3: MIMO-OFDM Wireless Communications with MATLAB <a href="https://catalog.xmu.edu.cn/opac/item.php?marc_no=0003146237">[CN]</a> （对OFDM原理有相对完整的介绍，网上有配套Matlab代码）</p>
+</li>
+<li><p>Ref4: Computer Networking: A Top-Down Approach (7th) <a href="https://catalog.xmu.edu.cn/opac/item.php?marc_no=0004160281">[CN]</a> （对计算机网络原理与技术有相对更易理解的介绍）</p>
+</li>
+</ul>
+<p>相关材料将在内部课程群发布。</p>
+<h2>Schedule</h2>
+<p>Subject to change as material progresses and unforseen events</p>
+<table id="TABLENAME">
+<tr class="r1"><td class="c1">Week  </td><td class="c2"> Date </td><td class="c3"> Lectures </td><td class="c4"> Labs </td><td class="c5"> Notes </td></tr>
+<tr class="r2"><td class="c1">1  </td><td class="c2"> June 24 </td><td class="c3"> Lec1: Introduction </td><td class="c4"> </td><td class="c5"> 完成组队，共享设备 </td></tr>
+<tr class="r3"><td class="c1"></td><td class="c2"> June 24 </td><td class="c3"> Lec2: SDR </td><td class="c4"> <a href="book/labs/lab0_pluto.html">Lab0: SDR</a> </td><td class="c5"> </td></tr>
+<tr class="r4"><td class="c1"></td><td class="c2"> June 26 </td><td class="c3"> Lec3: OFDM PHY I (Frame Sync) </td><td class="c4"> <a href="book/labs/lab1_sync.html">Lab1: Frame Sync</a> </td><td class="c5"> </td></tr>
+<tr class="r5"><td class="c1"></td><td class="c2"> June 26 </td><td class="c3">  </td><td class="c4"> Lab1: Frame Sync </td><td class="c5"> </td></tr>
+<tr class="r6"><td class="c1">2  </td><td class="c2"> July 1  </td><td class="c3"> Lec4: OFDM PHY II (Principles) </td><td class="c4">  </td><td class="c5"> Lab1 Deadline </td></tr>
+<tr class="r7"><td class="c1"></td><td class="c2"> July 1  </td><td class="c3"> Lec4: OFDM PHY II (Principles) </td><td class="c4"> <a href="book/labs/lab2_phy.html">Lab2: OFDM PHY</a> </td><td class="c5"> </td></tr>
+<tr class="r8"><td class="c1"></td><td class="c2"> July 3  </td><td class="c3">  </td><td class="c4"> Lab2: OFDM PHY </td><td class="c5"> </td></tr>
+<tr class="r9"><td class="c1"></td><td class="c2"> July 3  </td><td class="c3">  </td><td class="c4"> Lab2: OFDM PHY </td><td class="c5"> </td></tr>
+<tr class="r10"><td class="c1">3  </td><td class="c2"> July 8  </td><td class="c3">  </td><td class="c4"> Lab2: OFDM PHY </td><td class="c5">  </td></tr>
+<tr class="r11"><td class="c1"></td><td class="c2"> July 8  </td><td class="c3"> Lec5: SDR LLC/MAC </td><td class="c4">  </td><td class="c5">   </td></tr>
+<tr class="r12"><td class="c1"></td><td class="c2"> July 10 </td><td class="c3">  </td><td class="c4"> <a href="book/labs/project.html">Project: SDR System</a> </td><td class="c5">  Lab2 Deadline </td></tr>
+<tr class="r13"><td class="c1"></td><td class="c2"> July 10 </td><td class="c3">  </td><td class="c4"> Project: SDR System </td><td class="c5"> </td></tr>
+<tr class="r14"><td class="c1">4  </td><td class="c2"> July 15 </td><td class="c3"> Lec6: SDR System </td><td class="c4"> Project: SDR System </td><td class="c5"> </td></tr>
+<tr class="r15"><td class="c1"></td><td class="c2"> July 15 </td><td class="c3">  </td><td class="c4"> Project: SDR System </td><td class="c5"> </td></tr>
+<tr class="r16"><td class="c1"></td><td class="c2"> July 17 </td><td class="c3">  </td><td class="c4"> Project: SDR System </td><td class="c5"> </td></tr>
+<tr class="r17"><td class="c1"> </td><td class="c2"> July 17 </td><td class="c3">  </td><td class="c4"> Project: SDR System </td><td class="c5"> </td></tr>
+<tr class="r18"><td class="c1">
+</td></tr></table>
+<h2>Collaboration Policy</h2>
+<p>The labs and project may be on individuals or a team of three members. The following policy applies to an individual for an individual lab or a team for a team lab/project.</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Programming, like composition, is an individual creative process. Individuals must reach their own understanding of the problem and discover a path to its solution. During this time, discussions with friends are encouraged. However, when the time comes to write the code that solves the problem, such discussions are no longer appropriate; the program must be your own work.</p>
+<p>Do not, under any circumstances, copy another person's program, comments, README description, or any part of the submitted assignment. This includes character-by-character transliteration of another works (whether inspected visually or copied digitally), but it also includes derivative works (i.e., by renaming variable names or subtly shifting around statements in order to try to hide that copying has occurrred). You are also not allowed to use other people's code, comments, or results, even when &ldquo;citing&rdquo; them &ndash; all work must be your own. This includes work done by other XMU students this or past semesters, as well as any other code you find online.</p>
+<p>Writing code for use by another or using another's code in any form is academic fraud and will be dealt with firmly according to XMU's disciplinary policies. You are also responsible for ensuring that the code you write for the assignments is not readable by others, which includes sharing with students in future years or posting publicly on websites like github.</p>
+</div></div>
+<p>简化版：</p>
+<ul>
+<li><p>单人完成的任务，必须自己独立完成。允许讨论，但是必须自己写代码，不允许参考/抄袭其他同学或者网上的代码。</p>
+</li>
+<li><p>团队完成的任务，必须团队独立完成。团队内部可以一起写代码，但不允许参考/抄袭其他团队或者网上的代码。</p>
+</li>
+</ul>
+<div id="footer">
+<div id="footer-text">
+Page generated 2024-06-22 17:01:37 CST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+</div>
+</div>
+</div>
+</body>
+</html>
