@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title></title>
+</head>
+<body>
+<div id="layout-content">
+<h1>Hands-on Wireless System (Summer 2025)</h1>
+<h1>无线通信系统实践 (2024-2025学年小学期)</h1>
+<h2>Course Description</h2>
+<p>The goal of this course is to give students hands-on experience in the design, implementation and evaluation of an OFDM wireless communication system on the ADI Pluto software defined radio. Students will learn the principles through lab-driven experiments on software defined radios, and build a real-time system supporting real applications.</p>
+<p>本课程为高年级通信专业本科生开设的专业类实践课程，旨在通过指导同学们在软件无线电平台上完成一个实时无线通信系统（包括物理层、链路层与应用层），提升同学们对通信系统的理解，同时也提升同学们的动手实践能力。</p>
+<p>本课程内容主要参考Princeton大学Kyle Jamieson教授的《COS463: Wireless Networks》课程、UIUC大学Haitham Hassanieh教授的《ECE463: IoT and Software Defined Radio Lab》课程。结合厦大实际情况，确定了如下的课程内容与方式：</p>
+<p>（1）基于ADI Pluto的软件无线电与Python编程语言设计课程内容。同学们在大三上的《通信原理》课程上已熟悉ADI Pluto软件无线电平台，在大三下《智能信号处理与实践》课程上已熟悉Python语言，因此我们沿用这两个工具。从性能的角度上看，虽然Python的信号处理的效率远不及C或者FPGA（Verilog/VHDL），但是上手容易，而我们的系统对性能要求不高。此外与通信专业常用的Matlab比起来，Python更容易搭建实时系统。</p>
+<p>（2）基于OFDM技术组织课程内容。与传统的单载波数字调制方式（ASK/PSK/FSK）比起来，多载波的OFDM调制更复杂。但是考虑到OFDM技术已被主流的通信系统（比如4G/5G/WiFi）所采纳，是前沿技术，也是很多新波形设计的基础。此外，如何处理通信系统的实际因素，比如多径信道、时间同步误差、Carrier Frequency Offset，都能通过OFDM系统很好的展示出来。因此本课程以基于OFDM的WiFi 802.11a系统为例，通过讲解OFDM的原理与实现细节，贯穿无线通信基本知识（比如信道、同步、调制、编码）。</p>
+<p>（3）采取通信与网络相结合的方式。传统的通信类实践课程往往关注物理层设计，较少涉及MAC层、链路层、网络层、传输层，不能全面体现一个完整的通信系统。基于软件无线电平台提供的全栈开发能力，本课程介绍MAC协议、链路层可靠传输协议（自动请求重传协议）、虚拟网卡（TUN/TAP）的技术，使学生能够对通信系统有全面的理解。</p>
+<p>（4）采用阶梯式开发方式。本课程设计了两个实验，一个大项目，贯穿整个学期。各个环节相互依赖，比如第二个实验依赖第一个实验的结果，大项目依赖前两个实验的结果，将难度分解到平时的各个环节，确保学生能够在期末实现一个有完整度的实时通信系统。</p>
+<h2>Course Info</h2>
+<p><b>Course Time &amp; Location</b>: TBD
+
+</p>
+<p><b>Instructor</b>: Lizhao You (lizhaoyou [AT] xmu.edu.cn)</p>
+<p><b>Office Hours &amp; Location</b>: TBD (西部片区6号楼103-7)</p>
+<p><b>Lab TA</b>: TBD
+
+</p>
+<p><b>Prerequisties</b>: (optional)</p>
+<ul>
+<li><p>Digital Signal Processing</p>
+</li>
+<li><p>Principles of Communication</p>
+</li>
+<li><p>Computer Networks</p>
+</li>
+</ul>
+<h2>Contents</h2>
+<ul>
+<li><p>Software Defined Radio (SDR)</p>
+</li>
+<li><p>Frame Synchronization</p>
+</li>
+<li><p>Wireless Channel</p>
+</li>
+<li><p>OFDM Principles</p>
+</li>
+<li><p>Channel Codes (convolutional code)</p>
+</li>
+<li><p>Wireless MAC Design</p>
+</li>
+<li><p>Wireless LLC Design (ARQ protocols)</p>
+</li>
+<li><p>Network Protocol Stack</p>
+</li>
+</ul>
+<h2>Expected Outcomes</h2>
+<ul>
+<li><p>Understand the Challenges of Implementing a Real-time Wireless Communication System</p>
+</li>
+<li><p>Understand OFDM</p>
+</li>
+<li><p>Improve Programming Skills</p>
+</li>
+<li><p>Develop a Real-time Wireless Communication System on SDR</p>
+</li>
+</ul>
+<h2>Grading</h2>
+<ul>
+<li><p>20% One Quiz</p>
+</li>
+<li><p>40% Two Labs (独立完成)</p>
+</li>
+<li><p>35% One Project (组队完成，每组3人)</p>
+</li>
+<li><p>5%  Attendence</p>
+</li>
+</ul>
+<h2>Reference Books</h2>
+<p>市面上目前没有完全契合本课程的教科书，采用自编讲义形式。</p>
+<p>主要有以下参考书：</p>
+<ul>
+<li><p>Ref1: Software-Defined Radio for Engineers <a href="https://www.analog.com/media/en/training-seminars/design-handbooks/Software-Defined-Radio-for-Engineers-2018/SDR4Engineers.pdf">[EN]</a>（对软件无线电原理与通信系统的诸多实际约束有描述，SDR架构介绍的较详细）</p>
+</li>
+<li><p>Ref2: PySDR: A Guide to SDR and DSP using Python <a href="https://pysdr.org/">[EN]</a>（对软件无线电原理有简洁的描述，对Python操作SDR介绍较详细）</p>
+</li>
+<li><p>Ref3: MIMO-OFDM Wireless Communications with MATLAB <a href="https://catalog.xmu.edu.cn/opac/item.php?marc_no=0003146237">[CN]</a> （对OFDM原理有相对完整的介绍，网上有配套Matlab代码）</p>
+</li>
+<li><p>Ref4: Computer Networking: A Top-Down Approach (7th) <a href="https://catalog.xmu.edu.cn/opac/item.php?marc_no=0004160281">[CN]</a> （对计算机网络原理与技术有相对更易理解的介绍）</p>
+</li>
+</ul>
+<p>相关材料将在内部课程群发布。</p>
+<h2>Schedule</h2>
+<p>TBD</p>
+<h2>Collaboration Policy</h2>
+<p>The labs and project may be on individuals or a team of three members. The following policy applies to an individual for an individual lab or a team for a team lab/project.</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Programming, like composition, is an individual creative process. Individuals must reach their own understanding of the problem and discover a path to its solution. During this time, discussions with friends are encouraged. However, when the time comes to write the code that solves the problem, such discussions are no longer appropriate; the program must be your own work.</p>
+<p>Do not, under any circumstances, copy another person's program, comments, README description, or any part of the submitted assignment. This includes character-by-character transliteration of another works (whether inspected visually or copied digitally), but it also includes derivative works (i.e., by renaming variable names or subtly shifting around statements in order to try to hide that copying has occurrred). You are also not allowed to use other people's code, comments, or results, even when &ldquo;citing&rdquo; them &ndash; all work must be your own. This includes work done by other XMU students this or past semesters, as well as any other code you find online.</p>
+<p>Writing code for use by another or using another's code in any form is academic fraud and will be dealt with firmly according to XMU's disciplinary policies. You are also responsible for ensuring that the code you write for the assignments is not readable by others, which includes sharing with students in future years or posting publicly on websites like github.</p>
+</div></div>
+<p>简化版：</p>
+<ul>
+<li><p>单人完成的任务，必须自己独立完成。允许讨论，但是必须自己写代码，不允许参考/抄袭其他同学或者网上的代码。</p>
+</li>
+<li><p>团队完成的任务，必须团队独立完成。团队内部可以一起写代码，但不允许参考/抄袭其他团队或者网上的代码。</p>
+</li>
+</ul>
+<div id="footer">
+<div id="footer-text">
+Page generated 2024-12-12 23:42:15 CST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+</div>
+</div>
+</div>
+</body>
+</html>
