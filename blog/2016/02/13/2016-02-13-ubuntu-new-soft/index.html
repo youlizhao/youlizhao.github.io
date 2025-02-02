@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"youlizhao.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="新年入手了一块Intel 256G的SSD，来到实验室的第一天，迫不及待的重新安装了Ubuntu。觉得有必要把配置给记下来，所以动笔写下此日记。(更新于: 2018-01-21) 软件系统：Ubuntu 14.04.3 LTS (2018年更新为16.04.1 LTS) 按照先后顺序安装的软件：  vim sogoupinyin unzip teamviewer virtualbox: 还有导入备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu系统配置">
+<meta property="og:url" content="https://youlizhao.github.io/blog/2016/02/13/2016-02-13-ubuntu-new-soft/index.html">
+<meta property="og:site_name" content="Random Walks">
+<meta property="og:description" content="新年入手了一块Intel 256G的SSD，来到实验室的第一天，迫不及待的重新安装了Ubuntu。觉得有必要把配置给记下来，所以动笔写下此日记。(更新于: 2018-01-21) 软件系统：Ubuntu 14.04.3 LTS (2018年更新为16.04.1 LTS) 按照先后顺序安装的软件：  vim sogoupinyin unzip teamviewer virtualbox: 还有导入备">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-02-13T15:06:26.000Z">
+<meta property="article:modified_time" content="2025-01-28T15:25:43.068Z">
+<meta property="article:author" content="Travel">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://youlizhao.github.io/blog/2016/02/13/2016-02-13-ubuntu-new-soft/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>ubuntu系统配置 | Random Walks</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Random Walks</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2016/02/13/2016-02-13-ubuntu-new-soft/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu系统配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-02-13 23:06:26" itemprop="dateCreated datePublished" datetime="2016-02-13T23:06:26+08:00">2016-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-01-28 23:25:43" itemprop="dateModified" datetime="2025-01-28T23:25:43+08:00">2025-01-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>新年入手了一块Intel 256G的SSD，来到实验室的第一天，迫不及待的重新安装了Ubuntu。觉得有必要把配置给记下来，所以动笔写下此日记。<br>(更新于: 2018-01-21)</p>
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><p>系统：Ubuntu 14.04.3 LTS (2018年更新为16.04.1 LTS)</p>
+<p>按照先后顺序安装的软件：</p>
+<ul>
+<li>vim</li>
+<li>sogoupinyin</li>
+<li>unzip</li>
+<li>teamviewer</li>
+<li>virtualbox: 还有导入备份的windows镜像 (virtualbox官方有apt-get安装方法了)</li>
+<li>sublime3 (用ppa安装, 增加一个so可以支持中文输入)</li>
+<li>gparted</li>
+<li>chrome</li>
+<li>dropbox</li>
+<li>rescuetime</li>
+<li>rake (用来写octopress博客)</li>
+<li>texlive (详细见后面) + texstudio</li>
+<li>git&#x2F;git-gui</li>
+<li>beyondcompare 4.0.7</li>
+<li>kompare (用GUI的方式打开diff文件)</li>
+<li>openssh-server</li>
+<li>nfs-common &#x2F; portmap (可以nfs挂载)</li>
+<li>matlab</li>
+<li>wiznote</li>
+<li>calibre (按照主页安装)</li>
+<li>wireshark</li>
+<li>aptitude</li>
+<li>bing-wallpaper (github, 放弃)</li>
+<li>bingwallpaper (有个ppa源)</li>
+<li>proxychains sock5代理, 配合ss下载dropbox</li>
+</ul>
+<p>一些娱乐软件：</p>
+<ul>
+<li>flashplugin-installer</li>
+<li>unity-tweak-tool (修改成mac主题)</li>
+<li>vlc</li>
+<li>smplayer</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>第一次正式尝试根目录&#x2F;与home目录分离。另外挂了一块HDD硬盘，用来存储大数据。常用程序与小的开发代码放在SSD里面跑。</p>
+<p>编辑&#x2F;etc&#x2F;fstab实现自动挂载，sudo blkid查看UUID</p>
+<h3 id="手动修改MAC地址"><a href="#手动修改MAC地址" class="headerlink" title="手动修改MAC地址"></a>手动修改MAC地址</h3><p>修改&#x2F;etc&#x2F;network&#x2F;interfaces</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto eth2</span><br><span class="line">iface eth2 inet dhcp</span><br><span class="line">  hwaddress ether F0:DE:F1:0B:59:39</span><br></pre></td></tr></table></figure>
+
+<p>其中eth*需要看ifconfig的结果。</p>
+<h3 id="建立软链接"><a href="#建立软链接" class="headerlink" title="建立软链接"></a>建立软链接</h3><p>把HDD下面的Dropbox挂载过来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /*/Dropbox/ Dropbox</span><br></pre></td></tr></table></figure>
+
+<p>注意Dropbox之后不能有&#x2F;</p>
+<p>同理还有其他目录。其中最主要的是BCloud目录。</p>
+<h3 id="Latex"><a href="#Latex" class="headerlink" title="Latex"></a>Latex</h3><p>Latex的配置比较麻烦，特别是又有中文。</p>
+<p>主要仿照这篇<a target="_blank" rel="noopener" href="http://ptbsare.org/2014/05/12/ubuntu%E4%B8%8B%E9%83%A8%E7%BD%B2latex%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/">博客</a>，其中的安装方法二。</p>
+<p>不过配置完之后，发现这个应该是基于xelatex。换句话说，这个中文只能用xelatex下使用。pdflatex不可。</p>
+<p>这篇<a target="_blank" rel="noopener" href="https://github.com/shifujun/UESTCthesis/wiki/TeX%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85">博客</a>详述了不同平台下应该安装什么软件。比如</p>
+<blockquote>
+<p>Windows平台上比较流行的是MiKTeX，Linux平台上比较流行的是TeXLive，Mac平台上比较流行的是MacTeX。</p>
+</blockquote>
+<h4 id="TexStudio"><a href="#TexStudio" class="headerlink" title="TexStudio"></a>TexStudio</h4><p>Ctrl+T: comment<br>Ctrl+U: uncomment</p>
+<h4 id="Tlmgr"><a href="#Tlmgr" class="headerlink" title="Tlmgr"></a>Tlmgr</h4><p>siunitx</p>
+<p>sudo apt-get install texlive-science</p>
+<h3 id="vim配置"><a href="#vim配置" class="headerlink" title="vim配置"></a>vim配置</h3><p>裸装的vim稍显简陋，有一些个性化的vimrc配置工具，安装之后非常fancy。</p>
+<p>还没有完全搞清楚，先依葫芦画瓢做了一点配置。</p>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/a0b452f8f720">Vim配置、插件和使用技巧</a></p>
+<p><a target="_blank" rel="noopener" href="http://hahaya.github.io/use-vundle/">使用vundle管理vim插件</a></p>
+<h3 id="zsh的配置"><a href="#zsh的配置" class="headerlink" title="zsh的配置"></a>zsh的配置</h3><p>默认zsh, oh-my-zsh</p>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p>忽略结尾的^M，可以参考这个<a target="_blank" rel="noopener" href="http://blog.csdn.net/csfreebird/article/details/10448493">博客</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.whitespace cr-at-eol</span><br></pre></td></tr></table></figure>
+
+<h3 id="Octopress"><a href="#Octopress" class="headerlink" title="Octopress"></a>Octopress</h3><p>主要是ruby，主要仿照这篇<a target="_blank" rel="noopener" href="http://pangyi.github.io/blog/20150125/ubuntuzhong-octopressan-zhuang/">博客</a>。用rvm装上1.9.3，然后gem install rake，然后bundle install搞定。</p>
+<p>发现writing&#x2F;下面重复这个步骤会出错：提示某些包（比如RedCloth）无法安装，执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ruby1.9.1-dev</span><br></pre></td></tr></table></figure>
+
+<p>貌似<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/18063777/geminstallerextensionbuilderror-error-failed-to-build-gem-native-extension">解决了这个问题</a>。</p>
+<h3 id="Matlab"><a href="#Matlab" class="headerlink" title="Matlab"></a>Matlab</h3><p>步骤:</p>
+<ul>
+<li>mount -o loop src dst</li>
+<li>strings readme.txt</li>
+<li>choose &#x2F;home&#x2F;*&#x2F;opt as the installed dst</li>
+</ul>
+<p>错误:</p>
+<ul>
+<li><p>&#x2F;usr&#x2F;local&#x2F;bin&#x2F;matlab: 1: &#x2F;home&#x2F;lzyou&#x2F;opt&#x2F;MATLAB&#x2F;R2012a&#x2F;bin&#x2F;util&#x2F;oscheck.sh: &#x2F;lib64&#x2F;libc.so.6: not found</p>
+<ul>
+<li>sudo ln -s &#x2F;lib&#x2F;i386-linux-gnu&#x2F;libc.so.6 &#x2F;lib64&#x2F;libc.so.6</li>
+</ul>
+</li>
+<li><p>Pathdef could not be modified</p>
+<ul>
+<li>sudo chown lzyou:lzyou &#x2F;opt&#x2F;MATLAB&#x2F;-&#x2F;toolbox&#x2F;pathdef.m</li>
+</ul>
+</li>
+</ul>
+<h3 id="VirtualBox"><a href="#VirtualBox" class="headerlink" title="VirtualBox"></a>VirtualBox</h3><p>Create a page, and load old *.vdi</p>
+<p>If UUID problem, change *.vdi’s UUID. See <a target="_blank" rel="noopener" href="http://semi-legitimate.com/blog/item/change-uuid-of-virtual-drive-vdi-in-virtualbox">here</a>.</p>
+<p><a target="_blank" rel="noopener" href="http://blog.kissdata.com/2014/06/21/ubuntu-virtualbox.html">识别USB</a></p>
+<p>sudo usermod -G vboxusers -a your_account_name</p>
+<h3 id="其他程序"><a href="#其他程序" class="headerlink" title="其他程序"></a>其他程序</h3><p>暂停使用BCloud，因为发现可以用VirtualBox共享目录。用Windows下面的云管家，会员的下载速度非常快。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2016/02/09/2016-02-09-diy/" rel="prev" title="装机DIY">
+      <i class="fa fa-chevron-left"></i> 装机DIY
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2016/03/27/2016-03-27-gui-lin/" rel="next" title="桂林之行">
+      桂林之行 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%8C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9MAC%E5%9C%B0%E5%9D%80"><span class="nav-number">2.2.</span> <span class="nav-text">手动修改MAC地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="nav-number">2.3.</span> <span class="nav-text">建立软链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Latex"><span class="nav-number">2.4.</span> <span class="nav-text">Latex</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TexStudio"><span class="nav-number">2.4.1.</span> <span class="nav-text">TexStudio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tlmgr"><span class="nav-number">2.4.2.</span> <span class="nav-text">Tlmgr</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim%E9%85%8D%E7%BD%AE"><span class="nav-number">2.5.</span> <span class="nav-text">vim配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.6.</span> <span class="nav-text">zsh的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git"><span class="nav-number">2.7.</span> <span class="nav-text">git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Octopress"><span class="nav-number">2.8.</span> <span class="nav-text">Octopress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matlab"><span class="nav-number">2.9.</span> <span class="nav-text">Matlab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VirtualBox"><span class="nav-number">2.10.</span> <span class="nav-text">VirtualBox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.11.</span> <span class="nav-text">其他程序</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Travel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Travel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

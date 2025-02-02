@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"youlizhao.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="亲戚打电话说想装一台高性能机，恰好自己感兴趣，有一点经验，加上在假期，所以就开工了。 考虑到亲戚也是家用，所以也只是”伪”高性能。中等CPU[1]，内存稍大即可。主板挑一个稳定的，扩展性强的。 本来打算在香港买齐，但是发现价格其实差不多，除了CPU（便宜大概200RMB）。 装机过程，由于很久没动过了。折腾了一段时间，后来就没有什么问题了。应该参考[2]。 最后的配置  CPU: Intel 4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="装机DIY">
+<meta property="og:url" content="https://youlizhao.github.io/blog/2016/02/09/2016-02-09-diy/index.html">
+<meta property="og:site_name" content="Random Walks">
+<meta property="og:description" content="亲戚打电话说想装一台高性能机，恰好自己感兴趣，有一点经验，加上在假期，所以就开工了。 考虑到亲戚也是家用，所以也只是”伪”高性能。中等CPU[1]，内存稍大即可。主板挑一个稳定的，扩展性强的。 本来打算在香港买齐，但是发现价格其实差不多，除了CPU（便宜大概200RMB）。 装机过程，由于很久没动过了。折腾了一段时间，后来就没有什么问题了。应该参考[2]。 最后的配置  CPU: Intel 4">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-02-09T12:44:21.000Z">
+<meta property="article:modified_time" content="2025-01-28T15:23:57.596Z">
+<meta property="article:author" content="Travel">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://youlizhao.github.io/blog/2016/02/09/2016-02-09-diy/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>装机DIY | Random Walks</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Random Walks</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2016/02/09/2016-02-09-diy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          装机DIY
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-02-09 20:44:21" itemprop="dateCreated datePublished" datetime="2016-02-09T20:44:21+08:00">2016-02-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-01-28 23:23:57" itemprop="dateModified" datetime="2025-01-28T23:23:57+08:00">2025-01-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>亲戚打电话说想装一台高性能机，恰好自己感兴趣，有一点经验，加上在假期，所以就开工了。</p>
+<p>考虑到亲戚也是家用，所以也只是”伪”高性能。中等CPU[1]，内存稍大即可。主板挑一个稳定的，扩展性强的。</p>
+<p>本来打算在香港买齐，但是发现价格其实差不多，除了CPU（便宜大概200RMB）。</p>
+<p>装机过程，由于很久没动过了。折腾了一段时间，后来就没有什么问题了。应该参考[2]。</p>
+<p>最后的配置</p>
+<ul>
+<li>CPU: Intel 4 Cores 4 Threads Core i5-4690 Haswell Refresh (3.5GHz,6M Cache,LGA 1150,22nm)</li>
+<li>内存：Kingston KVR16E11&#x2F;8i DDR3 1600MHz 8GB (1x8GB) ECC 240-pin Unbuffered DIMM</li>
+<li>主板：华硕（ASUS）B85 Pro, DDR3,LGA 1150,Intel GbE Lan,USB3.0,SATA3 6Gb&#x2F;s ATX M&#x2F;B</li>
+<li>硬盘：西数1TB蓝盘</li>
+<li>电源：安钛克450W</li>
+<li>机箱：酷冷至尊 毁灭者</li>
+<li>总价：3200RMB</li>
+<li>CPU Price in HK: 1596HKD &#x3D; 1356RMB</li>
+</ul>
+<p>[1] 如果你不要压片，模拟，计算等等需要多线程能力，不需要i7。用4690k能省600，单线程超好。或者一定要多线程的话可以考虑用E3(Intel Xeon E3-1231 V3)，也省不少钱。</p>
+<p>[2] 点亮 -&gt; 安装机箱（拆卸机箱侧板） -&gt; 安装主板 -&gt; 安装硬盘 -&gt; 安装光驱 -&gt; 安装电源 -&gt; 连接前面板控制 -&gt; 连接前置USB -&gt; 连接数据线（硬盘&#x2F;光驱等）-&gt; 连接电源线（主板&#x2F;硬盘等） -&gt; 整理机箱连线（清理）-&gt; 清理机箱（防尘罩）</p>
+<p>[3] 作为一个码农，推荐i7+z68+16G+集显+SSD</p>
+<p>[4] 省钱就i5+h61+8g+dell u23以上级别的显示器</p>
+<h2 id="2015年暑假工作机配置"><a href="#2015年暑假工作机配置" class="headerlink" title="2015年暑假工作机配置"></a>2015年暑假工作机配置</h2><ul>
+<li>Intel Core i7-3770 CPU 3.40GHz</li>
+<li>Intel Core i7-2600 CPU 3.4GHz</li>
+<li>内存：8.00 GB</li>
+<li>ASUS P8Z77-m pro</li>
+<li>ASUS B85M-E R2.0</li>
+<li>QDIY 机箱</li>
+<li>Thermaltake电源</li>
+<li>外置硬盘架</li>
+</ul>
+<h2 id="2011年10月配的家庭机"><a href="#2011年10月配的家庭机" class="headerlink" title="2011年10月配的家庭机"></a>2011年10月配的家庭机</h2><ul>
+<li>CPU：奔腾双核 G620</li>
+<li>主板：Asrock 华擎 H61M&#x2F;U3S3    USB 3.0 Sata 3.0</li>
+<li>内存：A-DATA 威刚 万紫千红 DDR3     4G</li>
+<li>硬盘：WD Caviar Blue 500G</li>
+<li>机箱：HuntKey 航嘉百盛 暗夜H507</li>
+<li>电源：HuntKey 航嘉 冷静王钻石 WIN7 350W</li>
+<li>光驱：Pioneer DVR-219CHV 24X 串口DVD刻录机</li>
+<li>总价：1762RMB</li>
+<li>主板：后来Asrock坏了，换了一个技嘉GA-H61M-DS2</li>
+</ul>
+<p>现在看来，虽然CPU低了点，但是基本的应用（浏览器，QQ，QQ游戏，文档处理）还是可以跑的。侧面来看，PC端的进步慢了很多。</p>
+<h1 id="笔记本"><a href="#笔记本" class="headerlink" title="笔记本"></a>笔记本</h1><p>笔记本买的不多。</p>
+<p>2013年买的MacBook Air 13inch</p>
+<p>2006年买的HP Compaq NX6320 15inch</p>
+<ul>
+<li>DDR2 667MHz (500M+500M)</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2016/01/09/2016-01-09-nanyang/" rel="prev" title="《下南洋》">
+      <i class="fa fa-chevron-left"></i> 《下南洋》
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2016/02/13/2016-02-13-ubuntu-new-soft/" rel="next" title="ubuntu系统配置">
+      ubuntu系统配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2015%E5%B9%B4%E6%9A%91%E5%81%87%E5%B7%A5%E4%BD%9C%E6%9C%BA%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">2015年暑假工作机配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2011%E5%B9%B410%E6%9C%88%E9%85%8D%E7%9A%84%E5%AE%B6%E5%BA%AD%E6%9C%BA"><span class="nav-number">2.</span> <span class="nav-text">2011年10月配的家庭机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0%E6%9C%AC"><span class="nav-number"></span> <span class="nav-text">笔记本</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Travel</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Travel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
