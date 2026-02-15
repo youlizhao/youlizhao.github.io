@@ -79,14 +79,16 @@
 /* container */
 
 .container {
-	width: 980px;
+	width: 90%;
+	max-width: 1200px;
+	min-width: 320px;
 	min-height: 1000px;
 	max-height: 999999px; /* prevents font boosting */
-	margin: 56px auto 20px; /* top right bottom left */
+	margin: 60px auto 20px; /* top right bottom left */
 	box-shadow: 0 0 7px #122b6d; /*527bbd;*/
 	text-align: left;
 	background: #fff;
-	padding: 14px 14px 14px 14px; /* top right bottom left */
+	padding: 20px; /* top right bottom left */
 	z-index: 1;
 }
 
@@ -490,4 +492,183 @@ p.pub_author{
 
 p.pub_link{
 	font-size: 14px	
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Mobile Optimizations
+   ============================================ */
+
+/* Tablet devices (Portrait) */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 94%;
+        padding: 15px;
+        margin-top: 70px;
+    }
+    
+    .menu {
+        padding: 10px 0;
+    }
+    
+    .menu a {
+        padding: 0.2em 0.8em;
+        font-size: 100%;
+    }
+    
+    h1 {
+        font-size: 150%;
+    }
+    
+    h2 {
+        font-size: 115%;
+    }
+    
+    h3 {
+        font-size: 105%;
+    }
+    
+    #layout-content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+    
+    table.imgtable {
+        font-size: 95%;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+        margin-top: 80px;
+        margin-bottom: 10px;
+    }
+    
+    .menu {
+        position: static;
+        padding: 8px 5px;
+    }
+    
+    .menu a {
+        display: inline-block;
+        padding: 0.3em 0.5em;
+        font-size: 90%;
+        margin: 2px;
+    }
+    
+    body {
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 140%;
+    }
+    
+    h2 {
+        font-size: 110%;
+    }
+    
+    h3 {
+        font-size: 100%;
+    }
+    
+    #layout-content {
+        padding: 10px;
+    }
+    
+    table.imgtable {
+        display: block;
+        width: 100%;
+    }
+    
+    table.imgtable tr {
+        display: block;
+        margin-bottom: 15px;
+    }
+    
+    table.imgtable td {
+        display: block;
+        text-align: center !important;
+        padding: 5px;
+    }
+    
+    table.imgtable td:first-child {
+        padding-bottom: 10px;
+    }
+    
+    table.imgtable img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    p {
+        line-height: 1.4;
+    }
+    
+    ul, ol {
+        padding-left: 20px;
+    }
+    
+    li {
+        margin: 0.5em 0;
+    }
+    
+    div#footer {
+        font-size: 12px;
+        text-align: center;
+    }
+    
+    div#footer-text {
+        float: none;
+        text-align: center;
+        padding-bottom: 5px;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 320px) {
+    .container {
+        width: 98%;
+        padding: 8px;
+    }
+    
+    body {
+        font-size: 13px;
+    }
+    
+    .menu a {
+        font-size: 85%;
+        padding: 0.2em 0.4em;
+    }
+}
+
+#layout-content a[href^="http"]:not([href*="youlizhao.github.io"]):not([href*="informatics"])::after {
+    content: " \2197";
+    font-size: 0.75em;
+    color: #888;
+}
+
+/* Highlighting for important info */
+.highlight {
+    background-color: #fffacd;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* Project list styling */
+#layout-content ul li {
+    line-height: 1.5;
+}
+
+/* News section styling */
+.infoblock {
+    background: #ffffee;
+    border-left: 3px solid #224b8d;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
 }
