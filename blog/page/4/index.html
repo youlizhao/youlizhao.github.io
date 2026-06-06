@@ -156,6 +156,778 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2016/02/13/2016-02-13-ubuntu-new-soft/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/02/13/2016-02-13-ubuntu-new-soft/" class="post-title-link" itemprop="url">ubuntu系统配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-02-13 23:06:26" itemprop="dateCreated datePublished" datetime="2016-02-13T23:06:26+08:00">2016-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-01-28 23:25:43" itemprop="dateModified" datetime="2025-01-28T23:25:43+08:00">2025-01-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>新年入手了一块Intel 256G的SSD，来到实验室的第一天，迫不及待的重新安装了Ubuntu。觉得有必要把配置给记下来，所以动笔写下此日记。<br>(更新于: 2018-01-21)</p>
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><p>系统：Ubuntu 14.04.3 LTS (2018年更新为16.04.1 LTS)</p>
+<p>按照先后顺序安装的软件：</p>
+<ul>
+<li>vim</li>
+<li>sogoupinyin</li>
+<li>unzip</li>
+<li>teamviewer</li>
+<li>virtualbox: 还有导入备份的windows镜像 (virtualbox官方有apt-get安装方法了)</li>
+<li>sublime3 (用ppa安装, 增加一个so可以支持中文输入)</li>
+<li>gparted</li>
+<li>chrome</li>
+<li>dropbox</li>
+<li>rescuetime</li>
+<li>rake (用来写octopress博客)</li>
+<li>texlive (详细见后面) + texstudio</li>
+<li>git&#x2F;git-gui</li>
+<li>beyondcompare 4.0.7</li>
+<li>kompare (用GUI的方式打开diff文件)</li>
+<li>openssh-server</li>
+<li>nfs-common &#x2F; portmap (可以nfs挂载)</li>
+<li>matlab</li>
+<li>wiznote</li>
+<li>calibre (按照主页安装)</li>
+<li>wireshark</li>
+<li>aptitude</li>
+<li>bing-wallpaper (github, 放弃)</li>
+<li>bingwallpaper (有个ppa源)</li>
+<li>proxychains sock5代理, 配合ss下载dropbox</li>
+</ul>
+<p>一些娱乐软件：</p>
+<ul>
+<li>flashplugin-installer</li>
+<li>unity-tweak-tool (修改成mac主题)</li>
+<li>vlc</li>
+<li>smplayer</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>第一次正式尝试根目录&#x2F;与home目录分离。另外挂了一块HDD硬盘，用来存储大数据。常用程序与小的开发代码放在SSD里面跑。</p>
+<p>编辑&#x2F;etc&#x2F;fstab实现自动挂载，sudo blkid查看UUID</p>
+<h3 id="手动修改MAC地址"><a href="#手动修改MAC地址" class="headerlink" title="手动修改MAC地址"></a>手动修改MAC地址</h3><p>修改&#x2F;etc&#x2F;network&#x2F;interfaces</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto eth2</span><br><span class="line">iface eth2 inet dhcp</span><br><span class="line">  hwaddress ether F0:DE:F1:0B:59:39</span><br></pre></td></tr></table></figure>
+
+<p>其中eth*需要看ifconfig的结果。</p>
+<h3 id="建立软链接"><a href="#建立软链接" class="headerlink" title="建立软链接"></a>建立软链接</h3><p>把HDD下面的Dropbox挂载过来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /*/Dropbox/ Dropbox</span><br></pre></td></tr></table></figure>
+
+<p>注意Dropbox之后不能有&#x2F;</p>
+<p>同理还有其他目录。其中最主要的是BCloud目录。</p>
+<h3 id="Latex"><a href="#Latex" class="headerlink" title="Latex"></a>Latex</h3><p>Latex的配置比较麻烦，特别是又有中文。</p>
+<p>主要仿照这篇<a target="_blank" rel="noopener" href="http://ptbsare.org/2014/05/12/ubuntu%E4%B8%8B%E9%83%A8%E7%BD%B2latex%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/">博客</a>，其中的安装方法二。</p>
+<p>不过配置完之后，发现这个应该是基于xelatex。换句话说，这个中文只能用xelatex下使用。pdflatex不可。</p>
+<p>这篇<a target="_blank" rel="noopener" href="https://github.com/shifujun/UESTCthesis/wiki/TeX%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85">博客</a>详述了不同平台下应该安装什么软件。比如</p>
+<blockquote>
+<p>Windows平台上比较流行的是MiKTeX，Linux平台上比较流行的是TeXLive，Mac平台上比较流行的是MacTeX。</p>
+</blockquote>
+<h4 id="TexStudio"><a href="#TexStudio" class="headerlink" title="TexStudio"></a>TexStudio</h4><p>Ctrl+T: comment<br>Ctrl+U: uncomment</p>
+<h4 id="Tlmgr"><a href="#Tlmgr" class="headerlink" title="Tlmgr"></a>Tlmgr</h4><p>siunitx</p>
+<p>sudo apt-get install texlive-science</p>
+<h3 id="vim配置"><a href="#vim配置" class="headerlink" title="vim配置"></a>vim配置</h3><p>裸装的vim稍显简陋，有一些个性化的vimrc配置工具，安装之后非常fancy。</p>
+<p>还没有完全搞清楚，先依葫芦画瓢做了一点配置。</p>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/a0b452f8f720">Vim配置、插件和使用技巧</a></p>
+<p><a target="_blank" rel="noopener" href="http://hahaya.github.io/use-vundle/">使用vundle管理vim插件</a></p>
+<h3 id="zsh的配置"><a href="#zsh的配置" class="headerlink" title="zsh的配置"></a>zsh的配置</h3><p>默认zsh, oh-my-zsh</p>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p>忽略结尾的^M，可以参考这个<a target="_blank" rel="noopener" href="http://blog.csdn.net/csfreebird/article/details/10448493">博客</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.whitespace cr-at-eol</span><br></pre></td></tr></table></figure>
+
+<h3 id="Octopress"><a href="#Octopress" class="headerlink" title="Octopress"></a>Octopress</h3><p>主要是ruby，主要仿照这篇<a target="_blank" rel="noopener" href="http://pangyi.github.io/blog/20150125/ubuntuzhong-octopressan-zhuang/">博客</a>。用rvm装上1.9.3，然后gem install rake，然后bundle install搞定。</p>
+<p>发现writing&#x2F;下面重复这个步骤会出错：提示某些包（比如RedCloth）无法安装，执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ruby1.9.1-dev</span><br></pre></td></tr></table></figure>
+
+<p>貌似<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/18063777/geminstallerextensionbuilderror-error-failed-to-build-gem-native-extension">解决了这个问题</a>。</p>
+<h3 id="Matlab"><a href="#Matlab" class="headerlink" title="Matlab"></a>Matlab</h3><p>步骤:</p>
+<ul>
+<li>mount -o loop src dst</li>
+<li>strings readme.txt</li>
+<li>choose &#x2F;home&#x2F;*&#x2F;opt as the installed dst</li>
+</ul>
+<p>错误:</p>
+<ul>
+<li><p>&#x2F;usr&#x2F;local&#x2F;bin&#x2F;matlab: 1: &#x2F;home&#x2F;lzyou&#x2F;opt&#x2F;MATLAB&#x2F;R2012a&#x2F;bin&#x2F;util&#x2F;oscheck.sh: &#x2F;lib64&#x2F;libc.so.6: not found</p>
+<ul>
+<li>sudo ln -s &#x2F;lib&#x2F;i386-linux-gnu&#x2F;libc.so.6 &#x2F;lib64&#x2F;libc.so.6</li>
+</ul>
+</li>
+<li><p>Pathdef could not be modified</p>
+<ul>
+<li>sudo chown lzyou:lzyou &#x2F;opt&#x2F;MATLAB&#x2F;-&#x2F;toolbox&#x2F;pathdef.m</li>
+</ul>
+</li>
+</ul>
+<h3 id="VirtualBox"><a href="#VirtualBox" class="headerlink" title="VirtualBox"></a>VirtualBox</h3><p>Create a page, and load old *.vdi</p>
+<p>If UUID problem, change *.vdi’s UUID. See <a target="_blank" rel="noopener" href="http://semi-legitimate.com/blog/item/change-uuid-of-virtual-drive-vdi-in-virtualbox">here</a>.</p>
+<p><a target="_blank" rel="noopener" href="http://blog.kissdata.com/2014/06/21/ubuntu-virtualbox.html">识别USB</a></p>
+<p>sudo usermod -G vboxusers -a your_account_name</p>
+<h3 id="其他程序"><a href="#其他程序" class="headerlink" title="其他程序"></a>其他程序</h3><p>暂停使用BCloud，因为发现可以用VirtualBox共享目录。用Windows下面的云管家，会员的下载速度非常快。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2016/02/09/2016-02-09-diy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/02/09/2016-02-09-diy/" class="post-title-link" itemprop="url">装机DIY</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-02-09 20:44:21" itemprop="dateCreated datePublished" datetime="2016-02-09T20:44:21+08:00">2016-02-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-01-28 23:23:57" itemprop="dateModified" datetime="2025-01-28T23:23:57+08:00">2025-01-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>亲戚打电话说想装一台高性能机，恰好自己感兴趣，有一点经验，加上在假期，所以就开工了。</p>
+<p>考虑到亲戚也是家用，所以也只是”伪”高性能。中等CPU[1]，内存稍大即可。主板挑一个稳定的，扩展性强的。</p>
+<p>本来打算在香港买齐，但是发现价格其实差不多，除了CPU（便宜大概200RMB）。</p>
+<p>装机过程，由于很久没动过了。折腾了一段时间，后来就没有什么问题了。应该参考[2]。</p>
+<p>最后的配置</p>
+<ul>
+<li>CPU: Intel 4 Cores 4 Threads Core i5-4690 Haswell Refresh (3.5GHz,6M Cache,LGA 1150,22nm)</li>
+<li>内存：Kingston KVR16E11&#x2F;8i DDR3 1600MHz 8GB (1x8GB) ECC 240-pin Unbuffered DIMM</li>
+<li>主板：华硕（ASUS）B85 Pro, DDR3,LGA 1150,Intel GbE Lan,USB3.0,SATA3 6Gb&#x2F;s ATX M&#x2F;B</li>
+<li>硬盘：西数1TB蓝盘</li>
+<li>电源：安钛克450W</li>
+<li>机箱：酷冷至尊 毁灭者</li>
+<li>总价：3200RMB</li>
+<li>CPU Price in HK: 1596HKD &#x3D; 1356RMB</li>
+</ul>
+<p>[1] 如果你不要压片，模拟，计算等等需要多线程能力，不需要i7。用4690k能省600，单线程超好。或者一定要多线程的话可以考虑用E3(Intel Xeon E3-1231 V3)，也省不少钱。</p>
+<p>[2] 点亮 -&gt; 安装机箱（拆卸机箱侧板） -&gt; 安装主板 -&gt; 安装硬盘 -&gt; 安装光驱 -&gt; 安装电源 -&gt; 连接前面板控制 -&gt; 连接前置USB -&gt; 连接数据线（硬盘&#x2F;光驱等）-&gt; 连接电源线（主板&#x2F;硬盘等） -&gt; 整理机箱连线（清理）-&gt; 清理机箱（防尘罩）</p>
+<p>[3] 作为一个码农，推荐i7+z68+16G+集显+SSD</p>
+<p>[4] 省钱就i5+h61+8g+dell u23以上级别的显示器</p>
+<h2 id="2015年暑假工作机配置"><a href="#2015年暑假工作机配置" class="headerlink" title="2015年暑假工作机配置"></a>2015年暑假工作机配置</h2><ul>
+<li>Intel Core i7-3770 CPU 3.40GHz</li>
+<li>Intel Core i7-2600 CPU 3.4GHz</li>
+<li>内存：8.00 GB</li>
+<li>ASUS P8Z77-m pro</li>
+<li>ASUS B85M-E R2.0</li>
+<li>QDIY 机箱</li>
+<li>Thermaltake电源</li>
+<li>外置硬盘架</li>
+</ul>
+<h2 id="2011年10月配的家庭机"><a href="#2011年10月配的家庭机" class="headerlink" title="2011年10月配的家庭机"></a>2011年10月配的家庭机</h2><ul>
+<li>CPU：奔腾双核 G620</li>
+<li>主板：Asrock 华擎 H61M&#x2F;U3S3    USB 3.0 Sata 3.0</li>
+<li>内存：A-DATA 威刚 万紫千红 DDR3     4G</li>
+<li>硬盘：WD Caviar Blue 500G</li>
+<li>机箱：HuntKey 航嘉百盛 暗夜H507</li>
+<li>电源：HuntKey 航嘉 冷静王钻石 WIN7 350W</li>
+<li>光驱：Pioneer DVR-219CHV 24X 串口DVD刻录机</li>
+<li>总价：1762RMB</li>
+<li>主板：后来Asrock坏了，换了一个技嘉GA-H61M-DS2</li>
+</ul>
+<p>现在看来，虽然CPU低了点，但是基本的应用（浏览器，QQ，QQ游戏，文档处理）还是可以跑的。侧面来看，PC端的进步慢了很多。</p>
+<h1 id="笔记本"><a href="#笔记本" class="headerlink" title="笔记本"></a>笔记本</h1><p>笔记本买的不多。</p>
+<p>2013年买的MacBook Air 13inch</p>
+<p>2006年买的HP Compaq NX6320 15inch</p>
+<ul>
+<li>DDR2 667MHz (500M+500M)</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2016/01/09/2016-01-09-nanyang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/01/09/2016-01-09-nanyang/" class="post-title-link" itemprop="url">《下南洋》</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-01-09 23:38:37" itemprop="dateCreated datePublished" datetime="2016-01-09T23:38:37+08:00">2016-01-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-01-30 13:46:31" itemprop="dateModified" datetime="2026-01-30T13:46:31+08:00">2026-01-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Reading/" itemprop="url" rel="index"><span itemprop="name">Reading</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一</p>
+<p>《下南洋》，2013年12月播出的纪录片，非常有趣。现在才看到，实在惋惜。</p>
+<p>在这之前，我对南洋的了解仅限于知道几个国家的名字与地理位置：泰国、菲律宾、马来西亚、新加坡与印尼。人文景观上，对它们也没有什么兴趣，认为没有什么文化；自然风景以海为主，也对我没什么吸引力。</p>
+<p>这部纪录片纠正了我的片面。仅仅从南洋华人背后的文化内涵，已经值得我去认真了解、消化与学习。加上之前短暂的新加坡之旅，也让我意识到南洋是一个世界上最多元文化的地方，人口组成多样，宗教派别多样（佛教、基督教、伊斯兰教、印度教、儒家）。这才感受到南洋的魅力。</p>
+<p>纪录片一共十集，从不同切面来描述南洋华人的生存状态。下南洋，就如闯关东、走西口一样，是中华帝国历史上一个不可忽略的人口迁徙。地理位置上，以福建、广东的人口为主。早期的兵荒马乱、人口与资源的紧张，促成了最早一批下南洋讨生活的人；殖民主义对劳动力的需求，催生了第二波下南洋的人。</p>
+<p>土著时代开垦处女之地之艰辛，殖民时代与统治阶级的斗争，后殖民时代与土著阶级的冲突，都是这些南洋华人面临的困境。再加上中华帝国文化对他们远离故土的蔑视，实在是一段血泪史。在夹缝中艰难生存的危机，让他们对中华文化的认同感更为明显，这也能说明为什么南洋保留了很多现在在大陆已经消失的祠堂、传统节日的纪念。</p>
+<p>另一方面，他们受到的外来文化的冲击更为剧烈。直面西方先进文化，还有土著文化。确实如纪录片所阐述的那样，他们更为直接的接触与体验了先进的文化，也在吸收并改良自身的文化。从这个角度上讲，南洋的华人走的更远，能够为中华文明的现代化做出更大的表率。</p>
+<p>片中剑桥大学人类学家说，南洋是个美丽的田野，是人类多种族&#x2F;制度&#x2F;宗教融合之地，散发出独特的人文魅力。这也是非常有趣的地方。</p>
+<p><strong>Draft</strong>: 2016-01-09 23:38:37 +0800</p>
+<p>二</p>
+<p>从图书馆借来了两本关于马来西亚的书：台湾商务印书馆的《马来西亚独立五十年》，与国家教育研究院荷兰出版社发行的《马来西亚史》。都是台湾同胞写的。前者浅显易懂，非常适合入门；后者非常详尽，面面俱到。</p>
+<p>稍微总结一下所得：</p>
+<ul>
+<li>早期虽有古国，但是基本上没有什么影响力。14世纪由马来人建立的马六甲王朝才开始有些影响力。15世纪葡萄牙人入侵，希望与马六甲王朝展开贸易，遭拒之后战争灭掉马六甲王朝。后来演变成，葡占马六甲、柔佛、亚齐鼎立的局面。荷兰人的崛起取代了葡萄牙人，但是发展中心在巴达维亚（现雅加达）。殖民期间，引入大量劳工（特别是华工），开垦荒地从事必要低端行业。</li>
+<li>英国人先在槟城发展，后来与荷兰人谈判介入马六甲还有柔佛的现新加坡区域。英国人主要采取政治手段介入马来局势，并给马来亚带来两大遗产：政治制度与广阔领土。在英国的治理下，马来半岛基本形成三个行政体系：海峡殖民地，行政区包括新加坡、槟榔屿、天定和马六甲，总人口约100万；马来联邦，行政区包括霹雳、雪兰莪、彭亨、森美兰，总人口约150万，首府吉隆坡；马来属邦，行政区包括柔佛、吉兰丹、登嘉楼、吉打、玻璃市，总人口约100万人。</li>
+<li>二战之后，民族解放运动的兴起使得马来人&#x2F;华人争取独立，中间经过一些波折，由马来亚联合邦、马来亚联邦、马来西亚联邦等故事。1957年，马来亚联邦正式独立，在马来半岛，基本由上述几个部分组成。之后新加坡有兴趣联合（以摆脱英国的统治），加上英国人不想把东马地区（砂拉越、沙巴，据说文莱本来也想加入不过后来反悔了）划给印尼，所以促成1963年马来西亚联邦的成立。不过后来，新加坡与马来理念冲突严重，就于1965年退出宣布独立。</li>
+<li>马来西亚采用联邦制，议会内阁制，两院制。很多州都有苏丹，苏丹轮流当国家元首。回教为国教，有专门的法庭。最重要的政治组织，马来人成立的巫统：马来西亚联合组织（UMNO）；执政党：国民阵线，还包括一些政党，比如马华公会。</li>
+<li>马来西亚，马来人大概50.4%，华人23.7%，印度人估计10%。信奉回教的马来人占主导地位。由于信仰、生活习惯、经济基础等条件的差异，马来人与华人基本上是泾渭分明，交集不多。但是马来人主导的政府，以基本国策的方式（比如1971年制定的新经济政策）确立了马来人的种种特权，甚至有意的淡化华人的影响（比如对华文学校的压制）。其实说实话，这些政策有歧视的意味，但又不得不考虑现实，也让我进一步感受到政治的荒谬: 没有绝对的公平，有的只是平衡。</li>
+</ul>
+<p>书上列出几个西马的城市：吉隆坡、新山、马六甲、槟城，东马的古晋、诗巫，倒很有兴趣去逛逛。</p>
+<p><strong>Draft</strong>: 2016-03-13 12:03:00 +0800</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2016/01/03/2016-01-03-pukou/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/01/03/2016-01-03-pukou/" class="post-title-link" itemprop="url">浦口游记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-01-03 23:58:00" itemprop="dateCreated datePublished" datetime="2016-01-03T23:58:00+08:00">2016-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-02-01 16:01:34" itemprop="dateModified" datetime="2026-02-01T16:01:34+08:00">2026-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>年前的周六（12月26日）和老婆去了趟浦口，我们大三离开之后就再也没有回来过的地方。还是从南京火车站出发，我们大学开始的地方。看着路上穿过的街道与雾蒙蒙的长江大桥，仿佛回到了那年那天。我记忆中的那天，南京下着瓢泼大雨，没有雾霾。</p>
+<p>校园内的风景变化不大。原来的很多楼（玉辉楼，教学楼I、II、III，八角楼）、星湖、明湖都在。有些名字变了，八食堂改成双亭园（创业中心）。入门的天文台，还有东侧小山坡上的宾馆不见了，南平教室已被彻底改造成艺术学院，名人园变小了。</p>
+<p>周围的环境变化大了。原来的小吃一条街没有了，修理出干净的街道。东边臭水沟的一排饭店还有村庄消失了，取而代之的是弘阳的地产项目。西侧已经树立起很多很高的商品房。多瑙河网吧变成了腾龙网咖，还有一排的宾馆房间。</p>
+<p>建筑还在，但是明显的感觉到校园在萎缩，外围的地产项目在包围学校，学校内很多楼都是空的。路上见的行人不多，食堂里也没遇到火爆的排队。教超下的海报板上贴满了创业就业指导讲座、兼职信息，没有了以前红火的讲座与社团活动。很多地方还留有南大百年校庆的痕迹（百年纪念亭、百年雄狮），但是南大的学生已不在这里生活。</p>
+<p>我们绕着校园慢慢的走，每个地方都能回忆起有趣的事情。第一次相遇，第一次一起参加集体项目，第一次二人长聊，一起自习的地方，一起逛过的角落，……。也想起了很多求学期间，勤奋、愚蠢的时刻。</p>
+<p>未来，母校留在浦口的十七年的痕迹会慢慢消逝。或许有一天，整个校园会被其他学校所占领，或者被填平做它用。这个时代跑的太快，学校跟上时代步伐已是不易。不能在这个地方传承下来，也是一种遗憾。不过丢失在这里的青春，我还会时常想起它，也会想回来逛逛。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2015/12/25/2015-12-25-hua-shan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/12/25/2015-12-25-hua-shan/" class="post-title-link" itemprop="url">华山之行</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-12-25 20:49:40" itemprop="dateCreated datePublished" datetime="2015-12-25T20:49:40+08:00">2015-12-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-02-01 15:17:30" itemprop="dateModified" datetime="2026-02-01T15:17:30+08:00">2026-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Travel/" itemprop="url" rel="index"><span itemprop="name">Travel</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>缘起：圣诞小假期，没有什么闲情搞科研，准备出去玩＋回南京。本来打算三清山，不过交通不便，那何不去华山？去年就想去的，因为时间原因没有成行，今年就完成这个愿望吧，于是就来了。</p>
+<p>一、行程</p>
+<ol>
+<li>先飞西安。这次西安的交通不堵，空气也还行，比上次的印象好；本来订的是第二天7:50的第一班西安北到华山北的高铁，结果没开闹钟声音错过了；匆忙赶到西安北8:20，窗口改签，只能坐9:11分的高铁了。</li>
+<li>10:10左右分到达游客中心，坐上景点班车，到北峰索道下站时10:40。恰好看见路牌，说智取华山道只需要1小时40分就能上北峰，动心了。既然来爬山，就要爬上去（不过后来觉得还是没有必要，可以留着体力在山上来回穿梭）。用了1小时20分上去了，感觉还是有点累，没有那么轻松，不知道是自己体力的问题，还是装备的问题。</li>
+<li>路线是：北峰 -&gt; 东峰 -&gt; 中峰 -&gt; 东峰 -&gt; 南峰 -&gt; 西峰。前面走的比较紧，感觉觉得有点吃力，达到了考验我体力的地步。到了南峰之后，比较松，开始慢慢逛。17:40到西峰索道下站，大约18:10回到游客中心。</li>
+<li>整个旅程还是很满意，愉快的圣诞节！</li>
+</ol>
+<p>二：见闻</p>
+<ol>
+<li>一天爬山缆车下可行，不过应该要走智取华山道；如果走自古华山一条道，预计凌晨就要出发，才能保证一天能搞定；</li>
+<li>华山的范围比黄山小；北峰到东峰不好走，需要爬山，大概要1.5h；剩下的几个峰快一点2.5h能搞定；</li>
+<li>鸽子翻身确实比较恐怖，绝对超过90度，好在只有短短一段，下来一半的时候有点后悔了，还发现自己对下坡的恐惧更大点；西峰索道确实很雄（惊）伟（悚），索道运行时间长（20分钟，中途还停了一下），能充分感受到华山的险；</li>
+<li>山体比较雄伟，白色的石头为主（黄山记得是以黄色为主），而且很笔直；周围连绵起伏的群山，很有气势；</li>
+<li>没有看到云海，遗憾；反过来，要云海，估计要下雨，这样会更冷；</li>
+<li>远处城市比较模糊，估计是空气不行，比较遗憾；</li>
+<li>山上背阴地方有雪不会化，也有冰；好在工作人员扫雪除冰，还封锁了很多路段，感觉还是比较安全；</li>
+<li>必须全副武装，下山等缆车时明显感到冷了（特别是脚冷）；如果没有帽子，估计今天状态也不会太好；要买个手套，很有用，扶着锁链爬；登山杖其实可以带，有一些平的石阶路还是可以用；</li>
+<li>终于体验了巴塔C3内衣了：原来内衣不湿是把汗排出去了，裤子上沿都湿了；有一段，运动后突然停下来还是感觉到很大的凉意，如果穿的是棉内衣真是不可想象；</li>
+</ol>
+<p>三：花费</p>
+<ol>
+<li>超市零食：20，面食：28</li>
+<li>西安北到华山北：54.5</li>
+<li>华山北到游客中心：15（赶时间打车）</li>
+<li>脉动＋农夫山泉：15（游客中心买的）</li>
+<li>游客中心到北峰索道下站：20</li>
+<li>门票：50（学生证半价）</li>
+<li>鸽子翻身：30</li>
+<li>西峰索道：100（原价120，学生证100）</li>
+<li>西峰索道下站到游客中心：40</li>
+<li>游客中心到华山站：20</li>
+<li>晚餐：40（点菜）</li>
+</ol>
+<p>共：48+384.5&#x3D;433.5元</p>
+<p>其他费用</p>
+<ol>
+<li>深圳到西安飞机票</li>
+<li>西安到南京车票：270.5</li>
+<li>南京到深圳飞机票</li>
+</ol>
+<h2 id="参考游记"><a href="#参考游记" class="headerlink" title="参考游记"></a>参考游记</h2><p><a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/6c67b1d6e366e72787bb1e31.html">西安华山一日游攻略</a></p>
+<h2 id="补记"><a href="#补记" class="headerlink" title="补记"></a>补记</h2><p>2016年2月1日：很想再去一趟，来一次说走就走的旅程</p>
+<p>补充一个VX的记录（2015年12月25日）</p>
+<blockquote>
+<p>一天上下华山，终于完成了本该去年完成的旅行。北峰上西峰下，步行上缆车下。成熟景区冬季没什么危险，工作人员会扫雪除冰封危险路段，只需遵循防风保暖排汗冬季徒步三原则，就可愉快游玩。山上的风景果然不输黄山，更为雄伟；阳光明媚没有云海，唯一遗憾。</p>
+</blockquote>
+<p><img src="/blog/images/travel/2015-huasan/4414bfaf98b3d4b5ecb26c2d3f6af43e_compress.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2015/12/21/2015-12-21-%E9%BA%A6%E7%90%86%E6%B5%A9%E5%BE%92%E6%AD%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/12/21/2015-12-21-%E9%BA%A6%E7%90%86%E6%B5%A9%E5%BE%92%E6%AD%A5/" class="post-title-link" itemprop="url">麦理浩径徒步</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-12-21 15:43:24" itemprop="dateCreated datePublished" datetime="2015-12-21T15:43:24+08:00">2015-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-02-01 15:54:52" itemprop="dateModified" datetime="2026-02-01T15:54:52+08:00">2026-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Explore/" itemprop="url" rel="index"><span itemprop="name">Explore</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>补记于：2026年2月1日。</p>
+<p>麦理浩径算是我徒步开始的地方，值得单独写一篇纪念。</p>
+<p>喜欢上登山是从MSRA实习回来之后，那时候不想去学术圈（现在兜兜转转又回来了），加上觉得写论文很痛苦（积累不够，没有什么IDEA），于是周末就放飞去徒步。就从最经典的麦理浩径开始。</p>
+<p>后来就陆陆续续走完卫奕信径、港岛径、大屿山径，加起来差不多300km。又补了一些三尖等小地点，香港著名的山基本上都走了一次。</p>
+<p>爬山一方面是锻炼身体，另一方面确实见到了更广阔的香港。如果一直在CUHK，那只知道沙田那一片。现在知道香港还有很多很多的新地方。</p>
+<p>采取的是当天来回的策略，因此都是选择完整的几段走，有的长一点有的短一点。回想起来，最感谢的还是有朋友一起走完。</p>
+<p>那时候智能手机才刚刚流行，没有GPS轨迹，走之前都是看文字指南。香港徒步很成熟，路标很清晰，倒也不会迷路。遗憾的是，没有记录每天走的总行程总爬高，对自己的能力没有一个数字衡量，只知道能爬山。现在越野跑多了，对长度高度更加了解了，可能那时候最多当天30km爬升1500m。</p>
+<p>最后必须说，香港虽然拥挤，但是户外徒步值得，不体验实在浪费。</p>
+<p>VX的记录：</p>
+<blockquote>
+<p>麦理浩径100km，断断续续用了好几个周末走完了。10月18日开始，12月20日结束，爬山时间累计30.5小时。每一段都有可看之处，第二段、第四段、第八段自然风景最佳。最后感谢小伙伴们的一路陪伴。</p>
+</blockquote>
+<p><img src="/blog/images/travel/2015-hongkong/79308dfccd3d8a5d813c107fc8d50d60_compress.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2015/12/12/2015-12-12-singapore-visit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Travel">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Walks">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/12/12/2015-12-12-singapore-visit/" class="post-title-link" itemprop="url">新加坡之行</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-12-12 23:40:51" itemprop="dateCreated datePublished" datetime="2015-12-12T23:40:51+08:00">2015-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-02-02 01:18:44" itemprop="dateModified" datetime="2025-02-02T01:18:44+08:00">2025-02-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Travel/" itemprop="url" rel="index"><span itemprop="name">Travel</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>受邀访问南洋理工大学（NTU）一周，有幸来新加坡。周一到周五主要待在NTU，周六去了滨海湾金沙酒店逛了一圈，下午去拜访表哥家，体验了一下新加坡平常人家的社区。比较遗憾的是，没有去牛车水闹市（据说各种宗教和谐共处之处）逛一逛。</p>
+<p>原来以为新加坡应该没什么好逛的，但是静下来了解，还是有诸多有趣之处。</p>
+<h2 id="基本状况"><a href="#基本状况" class="headerlink" title="基本状况"></a>基本状况</h2><ol>
+<li>新加玻的屋子普遍比香港矮，南亚人很多（后来才知道主要是劳工）。气候确实炎热，暴雨很正常（12月据说是雨季），蚊子多。古式建筑（NTU里面很多）南洋画风，有瓦有顶。建筑之间基本相连，过道有顶主要用于避雨。</li>
+<li>新加坡主要讲英文，看过去像华人的可以与之讲普通话。与香港相比，可以不用讲粤语。临走的时候，在地铁上听两个华人（像是马来人，没敢问）讲普通话，不像福建口音，有一种非常有趣的腔调。</li>
+<li>网上查的资料：新加坡常住人口已达518万人，其中325万人（63%）属于本国公民，其他则属永久居民或外籍劳工，有23%本国公民在新加坡以外地区出生，永久居民约有50万人（10%）。2009年，在本地居民（本国公民及永久居民的总称）中，华人占74.2%，而欧亚混血人口和其他族群（包括峇峇娘惹）则占3.2%，马来人占13.4%，印度裔（以泰米尔人居多）占9.2%。新加坡面积707平方公里（参考：香港有1104平方公里，平潭县371平方公里）。</li>
+<li>新加坡主要有公民，永久居民（PR），劳工。公民有新加坡护照，PR还是原来国的护照。随着人口的增多，永久居民的待遇每况愈下，在买房、医疗、教育上差距越来越大。PR据说是自己提申请的，好像是没有什么硬性规定，学生一般毕业后找到工作申请能拿到。据说劳工的待遇不高。</li>
+<li>物价感觉与香港类似，但据说新加坡的<a target="_blank" rel="noopener" href="http://jobsg.info/archives/1407">生活成本</a>世界前列。学校宾馆的价格每天S$150，中午自助餐每人S$30。饮食比香港更diverse，各种食物都有。中餐我觉得比香港做的好。胡椒螃蟹，非常出名，看起来可怕，但是吃起来竟然是甜的。与香港类似，WalMart家乐福都败给了本地品牌，超市里的东西没有什么特色。</li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%96%B0%E5%8A%A0%E5%9D%A1%E6%95%99%E8%82%B2">新加坡的教育系统</a>非常精细，根据学习的程度有多种分流途径，学习差的有学习差的路径，学习好的有学习好的路径。有点应材施教的感觉，不过跨路径的成本更高。初中一般四年，通过考试分流，高中（称为Junior College）一般两年。高等教育相对应的程度有：大学、理工学院（大专）、ITE（中专？）。</li>
+<li>新加坡只上半天学。听起来很轻松，但与表侄女交流后发现，半天其实强度很大。7:30开始，13:30放学，中途只休息30分钟，一节课也是45分钟，但是是老师动学生不动。这里有个<a target="_blank" rel="noopener" href="http://tieba.baidu.com/p/304341861">佐证</a>。剩下的半天时间，CCA(课外活动，各种兴趣小组)或者补习。其实剩下的时间，也考验着家庭教育。学习习惯好的，利用这半天时间可以学习到更多东西，反之会拉大差距。这样看起来，其实学习强度不低。</li>
+<li>新加坡公立大学最近新增至五所：新加坡国立大学、南洋理工大学、新加坡管理大学、新加坡科技设计大学、新加坡理工大学（简称新工大，SIT）。这里有完整的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%96%B0%E5%8A%A0%E5%9D%A1%E5%A4%A7%E5%AD%B8%E5%88%97%E8%A1%A8">列表</a>。</li>
+<li><a target="_blank" rel="noopener" href="http://hk.apple.nextmedia.com/news/art/20150715/19220387">升学率</a>：香港一年有七萬多人考文憑試，但當中僅約18%考到大學。其他地方都沒有香港那麼難入大學，歐洲有逾五成升學率，新加坡也有25%。</li>
+</ol>
+<h2 id="南洋理工大学"><a href="#南洋理工大学" class="headerlink" title="南洋理工大学"></a>南洋理工大学</h2><ol>
+<li>校园里有趣的景点：华裔楼，云南园，蒸饺楼。华裔楼比较庄重，云南园像是一个小花园，有一些纪念碑，后来才知道有故事；蒸饺楼外形独特，后来才知道原来是自习室，有很多层，里面建筑风格古色古香。</li>
+<li>南洋理工大学在新加坡也简称南大。南洋理工大学与南洋大学有一点关系，历史的纠缠牵扯到新加玻政府对华人大学的态度。可以明显的看出，政府对华文的态度，尤其是随着时代的变迁而变化。</li>
+<li>南洋理工的建筑像以前的内地高中，看过去就是很多教室的构造，有走廊，实验室都是埋在教室里面。各个建筑基本上连在一起（用于避雨）。有顶式的走廊过道很常见，同样用于避雨。</li>
+<li>在学院里面过马路体会到的，新加坡对行人特别友好。遇到行人在斑马线附近，一定会停下来等行人先过。我在香港养成的让车先过的习惯，每次这里都要司机提示我先过。</li>
+<li>NTU的校园风景据说在全亚洲也能排上号。我觉得没有香港中文大学好看，因为不能看到海 :-)</li>
+</ol>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li>下飞机买电话卡，Singtel的$15一周的旅行肯定够用。7天1G流量，香港&#x2F;内地电话打（＊与接＊）好像都是8分。由于我基本上都在学校活动，加上带的手机比较差，流量话费一半都没有用到。top－up充值卡$10，30天接听免费（我没有试）。EZ-link有必要买一张，如果要坐公交（我第一次坐公交，没听清楚价格，丢了$1.7，其实只有17分而已）</li>
+</ol>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><ol>
+<li>感觉新加坡这种教育模式可能也是未来中国大城市名校的趋势，基础知识＋课外活动＋选修课。我看有的JC的<a target="_blank" rel="noopener" href="http://wenku.baidu.com/view/b85a0797dd88d0d233d46ab1.html">选修课H3</a>竟然已经有了线性代数、半导体物理与设备、A*STAR联合研究计划，亮瞎了我的狗眼。这种模式确实有利于对精英的选拔与培养，某种意义上对于一般的学生也有意义－－－面向职业的教育。中国的教育模式感觉目前还是不大一样，这样模式在中国全国推行估计不大可能，各地水平相差太大。但是中国的发达大城市的名校，具备了这样做的实力，其实也正在向这个方向靠拢（听说北京有的名中学选修课学曼昆的《经济学原理》）。哎，越来越感受到小地方来的穷孩子越来越难以出头。</li>
+<li>从网上得到的消息来看，新加坡管制特别严格。组屋的政策，降低了普通百姓住房的压力，但是管理制度透露着一种以屋管人的思路，因为与其他政策又有关系，比如<a target="_blank" rel="noopener" href="http://www.yan.sg/lihunguiding/">婚姻</a>。还有对言论自由的压制（诽谤罪），对游行的规定。国有资本（比如淡马锡控股）对资源的控制。这一点与香港形成鲜明的对比，香港基本上是一个自由的社会，奉行少干预政策。</li>
+<li>另一个角度，这种严管的政策却诞生了新加坡的经济领先地位，也令我心服口服。不过我相信，根基应该在于精英治国加上有一套廉洁高效的运行体制。而如何建立这一套体制不被权力腐蚀，而且又能对社会变化做出回应，却是个很难回答的问题。我的感觉还是与以法治国（而非以道德治国）密切相关。</li>
+<li><a target="_blank" rel="noopener" href="https://walkinsg.wordpress.com/nantah-01/">南洋大学的历史</a>，非常值得深读。可以看出，当年的中国的输出共产革命其实对世界有很大影响，间接的影响了华语&#x2F;华人文化圈的命运。新加坡政府对华文教育的绞杀，如果没有参杂着共产革命，我相信也不会那么严重。这里可以看出，其实文化的生命与国家的生命也是密切相关，要想一个文化能够长久的保留发扬光大，必须有一个强势的国家实体来承担。</li>
+<li>另一方面，如果没有共产革命的影响，估计也扭转不过那个时代英文压过华文的势头，毕竟当年西方更先进。随着现在中国影响力的增大，可以看到新加坡政府对华语又开始重视起来。这里就体现出资源匮乏造就了新加坡的定位就是跟随先进，就像是一个国家的基因，很难改变。优点是容易follow，缺点就是文化资源匮乏，培养不出一种特质与主流的气势（对于个体是否重要是另外一个问题）。</li>
+<li>可以开个玩笑，香港现在面临的问题是，两制相差太远。要是香港用的是新加坡路径崛起，那么一国两制应该容易得多。痴心妄想一下，其实一国两制应该向新加坡敞开 :-)</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2015/10/22/2015-10-22-da-li/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -476,763 +1248,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2015/02/01/2015-02-01-software/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Travel">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Random Walks">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2015/02/01/2015-02-01-software/" class="post-title-link" itemprop="url">软件工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2015-02-01 10:13:18" itemprop="dateCreated datePublished" datetime="2015-02-01T10:13:18+08:00">2015-02-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-28 23:24:08" itemprop="dateModified" datetime="2025-01-28T23:24:08+08:00">2025-01-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>目前手上有四套同时运行的系统：</p>
-<ul>
-<li>Windows: 工作期间运行office，兼顾网银</li>
-<li>Linux：用于各类开发</li>
-<li>Mac OS X: 平时休闲</li>
-<li>Android：手机系统</li>
-</ul>
-<p>经常遇到很多配置的问题，这篇博客总结平时使用的各类软件工具。记录以供不时之需。</p>
-<h1 id="Most-Powerful-Softwares"><a href="#Most-Powerful-Softwares" class="headerlink" title="Most Powerful Softwares"></a>Most Powerful Softwares</h1><ul>
-<li>BeyondCompare: 开发与文件管理必备</li>
-<li>Sublime Text: 开发与文档必备</li>
-</ul>
-<h1 id="Mac-OS-X"><a href="#Mac-OS-X" class="headerlink" title="Mac OS X"></a>Mac OS X</h1><h2 id="Latex-in-Mac"><a href="#Latex-in-Mac" class="headerlink" title="Latex in Mac"></a>Latex in Mac</h2><p>Although I can install MacTex in a whole packet, the size is too large for me (~2G?). I choose the hardmode — install the minimal packages, and update incrementally.</p>
-<p>I install MacTex-Basic.pkg, latexmk and Skim pdf reader, and use sublime to compile tex file. Some references are</p>
-<p><a target="_blank" rel="noopener" href="http://www.readern.com/sublime-text-latex-chinese-under-mac.html">部署MAC上的Sublime Text+LaTex中文环境</a></p>
-<p><a target="_blank" rel="noopener" href="http://painterlin.com/2014/08/10/Using-LaTeX-with-Sublime-and-Skim-for-Mac.html">在Mac上通过Sublime、Skim编辑LaTeX</a></p>
-<p>There are many problems in use. For example,</p>
-<ul>
-<li><p>*.sty not found?</p>
-<ul>
-<li>To use sudo tlmgr install *</li>
-<li>If *.sty is not part of CTAN, try to find *.sty in website, and copy it to<br>‘’’<br>&#x2F;usr&#x2F;local&#x2F;texlive&#x2F;2010basic&#x2F;texmf-dist&#x2F;tex&#x2F;latex&#x2F;base&#x2F;<br>‘’’.<br><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/1390828/how-do-i-install-a-latex-sty-file-on-osx">Ref: How do I install a LaTeX .sty file on OSX?</a></li>
-</ul>
-</li>
-<li><p>Fonts not found?</p>
-<ul>
-<li>To use sudo tlmgr install *</li>
-<li>To install collection-fontsrecommended, collection-fontsextra packages;</li>
-</ul>
-</li>
-<li><p>eps vs. pdftex?</p>
-<ul>
-<li>To use epstopdf package. But you need to install ghostscript first</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2015/01/09/2015-01-09-kao-gu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Travel">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Random Walks">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2015/01/09/2015-01-09-kao-gu/" class="post-title-link" itemprop="url">考古</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2015-01-09 22:36:03" itemprop="dateCreated datePublished" datetime="2015-01-09T22:36:03+08:00">2015-01-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-01-28 23:27:12" itemprop="dateModified" datetime="2025-01-28T23:27:12+08:00">2025-01-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Reading/" itemprop="url" rel="index"><span itemprop="name">Reading</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>也说不上什么原因，平时对考古也颇有兴趣，比如古墓挖掘、城墙，大概与喜欢历史有关。不过这个爱好，内行的程度决定了欣赏的程度。你需通晓历史精通文学，才能欣赏文物。一个文盲走进博物馆，又不想请导游，只能看点热闹。</p>
-<p>今天突然写这个话题，要从最近看的这本书说起：</p>
-<ul>
-<li>《曠世絕響──擂鼓墩曾侯乙墓發掘記》<a target="_blank" rel="noopener" href="http://www.cp1897.com.hk/product_info.php?BookId=9789571354675">繁体</a>。</li>
-</ul>
-<p>作者岳南，这个系列里面比较出名的作者。这本书讲述了挖掘曾侯乙墓的过程，穿插着对历史的介绍，还有各种文物背后的故事。以纪实文学为体，有些演绎；有专业的引述，也有花边的描述。总体来是，还是达到了我作为一个非专业人士认可的程度 — 娱乐时娱乐，专业时获取点专业知识。</p>
-<p>也顺带把这个系列我看过的其他书罗列一下，供以后回忆：</p>
-<ul>
-<li>《风雪定陵–地下玄宫洞开之谜》<a target="_blank" rel="noopener" href="http://book.douban.com/subject/1053810/">简体</a>: 这是一本我在大一时候看的书，当年看的时候觉得非常有趣，了解了很多故事，比如红卫兵，然后扩展了很多知识。研一的时候无聊再次翻起，感觉已消失。</li>
-<li>《萬世法門(上)塔起塔崩》<a target="_blank" rel="noopener" href="http://www.cp1897.com.hk/product_info.php?BookId=9573234084">繁体</a>，《萬世法門(下)緣滅緣生》<a target="_blank" rel="noopener" href="http://www.cp1897.com.hk/product_info.php?BookId=9573234092">繁体</a>： 陕西法门寺的故事，在图书馆闲逛找到就翻翻；</li>
-<li>《復活的軍團(上)─秦始皇陵兵馬俑發現之謎》《復活的軍團(下)─秦始皇陵兵馬俑發現之謎》<a target="_blank" rel="noopener" href="http://www.cp1897.com.hk/product_info.php?BookId=9787100072007">繁体</a>：去兵马俑前的准备，后来第一次去西安只去了兵马俑；</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2014/12/30/2014-12-30-yue-du-nan-jing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Travel">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Random Walks">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2014/12/30/2014-12-30-yue-du-nan-jing/" class="post-title-link" itemprop="url">阅读南京</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-12-30 12:12:11" itemprop="dateCreated datePublished" datetime="2014-12-30T12:12:11+08:00">2014-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-02-01 16:01:07" itemprop="dateModified" datetime="2026-02-01T16:01:07+08:00">2026-02-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Knowledge/" itemprop="url" rel="index"><span itemprop="name">Knowledge</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>南京真是个有文化的人，特别是了解中国近代史的人，才能懂的城市。</p>
-<h2 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h2><p>算来也在南京待了有七年，3年浦口，3年鼓楼，1年仙林。说实话对这个城市的理解还是肤浅，本质上还是文化水平太低，于是创造了这个系列，了解南京，了解背后的中国近代史。</p>
-<p>先从南京城墙开始。</p>
-<p><a target="_blank" rel="noopener" href="http://site.douban.com/141843/widget/notes/6785528/note/204268531/">南京明城墙徒步行走攻略</a></p>
-<p><a target="_blank" rel="noopener" href="http://js.qq.com/a/20140111/001034.htm">南京明城墙8月前分6段开放 清凉门等段落将免费</a></p>
-<p><img src="http://img1.gtimg.com/jiangsu/pics/hv1/88/61/1499/97488118.jpg" alt="IMAGE"></p>
-<p>神策门至太平门</p>
-<ul>
-<li>全长6公里，全线城墙本体收费开放，已设置神策门、模范马路、玄武门、台城、九华山等6个登城出入口。城上设置特制自行车供游客使用。</li>
-</ul>
-<p>太平门、中山门至光华东街</p>
-<ul>
-<li>全长6公里，城墙本体收费开放，设置中山门、后半山园、琵琶湖、南航、标营门、蓝旗街等6个登城出入口。</li>
-</ul>
-<p>东水关至西水关</p>
-<ul>
-<li>全长6公里，城墙本体收费开放，已设置东水关、武定门、伏龟楼、中华门、长干门、集庆门、二机床厂等7个登城出入口。城上设置特制自行车供游客使用。</li>
-</ul>
-<p>清凉门至国防园</p>
-<ul>
-<li>全长1公里，城墙本体将保持免费开放，已设置清凉门、国防园登城出入口2处。</li>
-</ul>
-<p>定淮门至狮子山</p>
-<ul>
-<li>全长4公里，阅江楼景区内段落收费开放，其他段落将保持免费开放。已设置华严岗、挹江门、阅江楼景区等5个登城出入口。</li>
-</ul>
-<p>钟阜路至中央门</p>
-<ul>
-<li>全长约2公里，城墙遗迹维修已经完成，将免费开放，已设置钟阜路、金贸大街、中央门等7个登城口。</li>
-</ul>
-<h2 id="清凉门到国防园，一公里城垣写满传奇"><a href="#清凉门到国防园，一公里城垣写满传奇" class="headerlink" title="清凉门到国防园，一公里城垣写满传奇"></a><a target="_blank" rel="noopener" href="http://jlwb.njnews.cn/html/2014-01/25/content_1577344.htm">清凉门到国防园，一公里城垣写满传奇</a></h2><p>金陵晚报记者 于峰</p>
-<blockquote>
-<p>在最近召开的南京两会上，南京的文化遗产保护成为代表们高度关注的问题。南京明城墙也将在青奥会开幕前分六段进行开放。记者了解到，这六段城墙，每一段都有很多风雨沧桑的故事，每一段都大有看点。“老南京”版特开辟“明城墙六段传奇”专栏，为您一一揭秘。</p>
-<p>日前，我们韶了“东水关至西水关”段城墙的故事，今天，“老南京”和您接着聊“清凉门至国防园”这段城墙的风雨沧桑。</p>
-<p>夏天的清凉门“名副其实”</p>
-<blockquote>
-<p>在六段即将全面开放的南京城墙中，“清凉门至国防园”段是最短的，全长仅1公里。目前，这段城墙的外侧、内侧以及城墙表面都已基本开放，接下来，有关部门将拆除城墙两侧15米范围内的违法建筑。</p>
-<p>记者日前来到清凉门，漫步这段城墙，和城墙下晒太阳的老者聊天，搜集到很多关于这段城墙不为人知的故事。</p>
-<p>明初，朱元璋造13座城门，留存至今的只有四座，其中之一就是清凉门（其他三座分别是神策门、聚宝门、石城门）。南京明城垣史博物馆的刘斌研究员告诉记者，清凉门位于南京城西，因为清凉山而得名，地理位置偏僻，《南都察院志》就说此门“幽僻”。</p>
-<p>明洪武十二年（1379），朱元璋改清凉门为清江门。到了明万历三年（1575），又恢复了清凉门的本名。</p>
-<p>“现在是冬天，如果夏天过来，坐在清凉门门洞里，能感受到彻骨的清凉，那时的清凉门最‘名副其实’了！”坐在清凉门城墙下晒太阳的苏老这样告诉记者。</p>
-</blockquote>
-<p>清凉门的旗杆石还在</p>
-<blockquote>
-<p>苏老是附近的居民，从小就在这里长大。他告诉记者，以前从清凉门到草场门，沿着城墙建满了各种草棚茅屋，秦淮河和城墙之间是有名的棚户区，很容易引起火灾。后来，经过改造，清凉门这段环境得到了整治，每天游客络绎不绝。</p>
-<p>“你别看这段城墙不长，发生的故事和可看的景点可不少，有名的如鬼脸照镜景观、燕王朱棣逃出南京的燕王河，你们《金陵晚报》都报道过，我来给你们讲述点不为人知的！”见记者对清凉门的历史很有兴趣，苏老打开了话匣子。</p>
-<p>在苏老指点下，记者看到清凉门城垣上有一块旗杆石，高约1.8米。旗杆石上有两个穿孔，用来固定旗杆。记者了解到，过去南京各个城门上几乎都有旗杆石，留到现在的已经极少了。</p>
-<p>老居民向记者回忆，当年清凉门和中华门一样，也有一个内瓮城。记者在资料里查到，清凉门的内瓮城的确有过，直径约四十米，东高西低，可惜在“文革”期间被拆除。</p>
-</blockquote>
-<p>这一路军事遗迹很多</p>
-<blockquote>
-<p>从清凉门沿着城墙向草场门走去，一路上还有不少看点。</p>
-<p>记者发现，城墙内侧山体的一块平地上，有一个水泥浇筑的圆圹，圆圹内壁上还有锥形的壁龛，很多在这里晨练的市民都不知道这个“水泥圆圈”的用处。南京文史作家苏克勤先生编撰的《南京清凉山》一书给出答案。原来，这是清代末年为了加强江防设置的清凉山炮台的遗迹。该炮台在抗战期间曾经发挥作用，后来被放弃，如今只剩下这么一个作为掩体使用的圆圹，其内壁上的壁龛，则是放置炮弹的。</p>
-<p>在清凉门至国防园沿线，类似的军事遗迹还有不少。记者在这段城墙两侧发现了多个钢筋混凝土结构的碉堡，都是抗战爆发前，中国军队为了防备日军进攻而留下来的。</p>
-<p>在清凉山西南角的城墙墙体上，如今还复建了一个烽火台，其外形和北方长城的烽火台几乎一致。在这里设烽火台也是有依据的，因为早在东吴时，清凉山上就出现过烽火台。明代诗人陈沂在《金陵世纪》中称，“吴烽火台在石头城最高处，吴时举烽火于此，自建康至西陵五千七百里，有警急，半日而至。”文中的“西陵”，是指湖北宜昌。如今的这个烽火台，正是对东吴烽火台的再现。</p>
-</blockquote>
-<p>清凉门内有过“外国坟”</p>
-<blockquote>
-<p>苏老告诉记者，“清凉门至国防园”这段城墙还有一个最大的看点，就是沿途古墓非常多，“我们小时候到这儿来玩，城墙内侧的清凉山山体，几乎就是乱葬岗。”记者也清楚地记得，六七年前来到国防园靠近城墙的一侧时，也见过很多墓，从墓碑上看，甚至包括清光绪、宣统年间的古墓。</p>
-<p>据了解，埋葬在这段城墙内侧的历代名人有南唐名臣张懿公、李金全，北宋学者程偃孙（北宋大儒程颐五世孙），清代大学士熊赐履，清代大文豪吴敬梓，清代文人何其兴、朱卉等。有学者研究后发现，南唐时，清凉门内的石头山是王公贵族的丛葬地。</p>
-<p>埋在清凉门内山体上的甚至还有外国人。1936年出版的《最新南京地图》上，这个位置标注了一处“外国坟”公墓，老照片也显示，民国时清凉门北侧的“外国坟”埋葬了很多客死南京的外籍人士。新中国成立以后，清凉门北侧被辟建为清凉山火葬场，这个“外国坟”公墓也被平整不存。</p>
-</blockquote>
-</blockquote>
-<h2 id="从定淮门到狮子山，城墙串起近代史"><a href="#从定淮门到狮子山，城墙串起近代史" class="headerlink" title="从定淮门到狮子山，城墙串起近代史"></a><a target="_blank" rel="noopener" href="http://jlwb.njnews.cn/html/2014-01/29/content_1578552.htm">从定淮门到狮子山，城墙串起近代史</a></h2><p>金陵晚报记者 于峰</p>
-<blockquote>
-<p>在最近召开的南京两会上，南京的文化遗产保护成为代表们高度关注的问题。南京明城墙也将在青奥会开幕前分六段进行开放。记者了解到，这六段城墙，每一段都有很多风雨沧桑的故事，每一段都大有看点。“老南京”版特开辟“明城墙六段传奇”专栏，为您一一揭秘。</p>
-<p>日前，我们韶了“清凉门至国防园”段城墙的故事，今天，“老南京”和您接着聊“定淮门至狮子山”这段城墙的风雨沧桑。</p>
-</blockquote>
-<blockquote>
-<p>定淮门曾被叫做“马鞍门”</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>和我们之前介绍的“神策门—太平门”那一段城墙很相似，“定淮门至狮子山”四公里城墙一路铺开很多美景，在城墙上漫步，能享受到“移步换景”之妙。城墙沿线有小桃园、八字山、绣球公园、阅江楼景区（狮子山）等多个公园，不管是春天的桃红柳绿，还是夏天的荷叶蔽日，四公里的城墙漫步让人充分领略南京“山水城林”的魅力。</p>
-<p>这段城墙的起点是定淮门。城墙专家告诉记者，定淮门是明初十三座城门之一，建成之初，由于临近城内的马鞍山，曾被称为“马鞍门”。而“定淮门”则有稳定城外秦淮河之意。在明初十三座城门中，定淮门地理位置较为偏僻。定淮门外曾有过著名的龙江宝船厂。</p>
-<p>定淮门如今无存，其拆除时间大约是在1962年。有意思的是，在明初十三座城门中，定淮门是唯一没有留下照片的老城门，曾经有市民提供线索，称电影《东进序曲》在定淮门取过景，但记者反复观看这部电影，发现定淮门的镜头并没有出现在影片中。前不久，在媒体的寻找下，有一位老教授提供了当年在定淮门前的留影，弥补了定淮门影像资料缺失的遗憾。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>八字山的“八字”如何变迁</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>从定淮门往北走，过新开辟的华严岗门，再走过小桃园，你会发现，城墙内侧就是山体，这就是著名的八字山。八字山原名四望山，相传东吴大帝孙权曾登临此山。1929年，为了迎接孙中山灵榇，国民政府在八字山朝向中山北路一面用石头垒出“忠孝仁爱，信义和平”八个大字，四望山改称“八字山”。新中国成立以后，八字山石头标语曾先后改为“发展生产、繁荣经济”，“团结紧张，严肃活泼”，依然是八个字，却鲜明地展现了中国近现代史的变迁。</p>
-<p>如今八字山最大的看点，是山上山下的钢筋混凝土碉堡群，其中有国民政府防备日军的工事，也有渡江战役前国民党军修建的碉堡。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>挹江门门洞里踩死过很多人</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>八字山下，是著名的挹江门。</p>
-<p>民国三年（1914年），随着下关开埠，下关通向城内的仪凤门越来越不堪重负。下关士绅提议在仪凤门以南城墙上再开一道城门。此门在时任江苏民政长的韩国钧推动下得以开辟，因为韩国钧是泰州人（韩国钧家乡海安当时属泰州，泰州古称海陵），这座门得名海陵门。</p>
-<p>1928年，为了准备孙中山灵榇奉安中山陵的典礼，南京市政当局修建中山大道。狭窄的海陵门无法和宽阔的中山大道配套，仅仅建了十几年的海陵门因此被拆掉，建起了一座挹江门。挹江门于奉安大典前一个月竣工，为三孔多跨复合式券门，与传统意义上的明城门并不一样，更适应近代化城市的需求。</p>
-<p>挹江门建成以后，看尽了风雨沧桑。1937年12月的南京保卫战中，挹江门由于通往江边，被守军用麻袋堵死。城内守军撤退时，扒开麻袋，很多军人和难民在挹江门门洞里被活活踩死。而12年后的1949年4月23日，解放军将士在下关江面上岸后，通过挹江门，解放了整座南京城。可以说，同样一座挹江门，见证了南京百年历史上最屈辱和最振奋的瞬间。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>仪凤门外有过日军战俘营</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>挹江门往北不远处是仪凤门，如今的仪凤门是重建的，但它和定淮门一样，也是朱元璋最初建的十三座城门之一。仪凤门坐落在狮子山和绣球山之间，曾是当年下关地区最重要的一座明代城门。1928年，仪凤门改名兴中门。据《南京城墙志》记载，老的仪凤门于1971年拆除，2006年左右重建。</p>
-<p>和挹江门一样，仪凤门在中国近现代史上也曾写下一笔。这不仅仅是因为仪凤门外的静海寺是中英《南京条约》签订的地方，更是因为仪凤门是太平军攻入南京的破城处。1853年3月19日，太平军用炸药炸塌仪凤门附近的城墙，从而占领南京。</p>
-<p>1945年抗日战争胜利以后，仪凤门外还曾经见过收容日军战俘、日侨的战俘营，不可一世的侵略者在这里低下了头颅。定淮门至狮子山城墙共计四公里，虽然不长，却串起了从太平天国到民国，从日本侵华到南京解放很多中国近现代史上的重要时刻，这是其他地段的南京城墙难以比拟的。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>建设中的挹江门。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2014/07/20/2014-07-20-zu-qiu-sai-zong-jie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Travel">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Random Walks">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2014/07/20/2014-07-20-zu-qiu-sai-zong-jie/" class="post-title-link" itemprop="url">9v9足球赛总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-07-20 02:54:20" itemprop="dateCreated datePublished" datetime="2014-07-20T02:54:20+08:00">2014-07-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-02-02 23:11:51" itemprop="dateModified" datetime="2025-02-02T23:11:51+08:00">2025-02-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>睡不着，脑袋里一直回味着昨天晚上的球赛，越想越觉得憋屈，索性爬起来总结一下。很多年没有这样的感觉了。</p>
-<p>首先需要反省一下，这个比赛我犯了很多错误，比如</p>
-<ul>
-<li>提前下场了，基本上是因为我放弃比赛了，有点懒散，与以前硬朗的作风不符；</li>
-<li>忽略了防守，边卫的基本任务是防守，特别是敌强我弱的前提了。为了提高进攻力度（实际上也没有什么效果），我压上的位置太前，球被断对方反击基本上回不去了。如果能退后一点，协助中卫防守或许不会失这么多球；</li>
-</ul>
-<p>还有一些习惯性的缺陷：</p>
-<ul>
-<li>缺乏进攻的手段与方式，进攻无法由我这端发起，传球之后不能跟进接应，导致进攻停滞。这是我一直以来的毛病，与基本功有关；</li>
-<li>对方胜在整体的配合。以前，我一直以为野球有球踢就可以，不注重团队的配合。出去踢而且是大场地，配合还是很重要的，以后要注重与队友的磨合，跟上队友的节奏，也让队友熟悉自己的节奏；</li>
-</ul>
-<p>个人对这次比赛的解读如下：</p>
-<ul>
-<li><p>对方这次阵型比较完整，战术执行的也很彻底：</p>
-<ul>
-<li>进攻：断球之后以快速反击为主，利用大片空当，依靠前锋与前腰的能力进球；阵地战以短传接应为主，通过对球的转移控制寻找空当；</li>
-<li>防守：队形保持的比较好，收缩的很快，后卫基本站好防守位置，其他人员囤积中路，不主动上抢，以切断传球路线为主；</li>
-</ul>
-</li>
-<li><p>本方打法比较单一，因为缺乏多点接应并且拿住球的能力，短传容易被断，以边路个人突破为主；长传的准确度也不高；</p>
-</li>
-<li><p>配合也比较生疏，没有形成套路，比如</p>
-<ul>
-<li>我与后腰踩不到一个点，他的传球基本上都是提前的，而且他也摸不清我前插的规律，有时候他希望我插上我没有跟上，有时候我上去了而且有空当也没有配合；</li>
-<li>缺乏一个前腰呼应，没有拉扯，没有太好的机会插上，基本上就放弃右前方的攻击；</li>
-</ul>
-</li>
-</ul>
-<p>足球这项运动是个技术活啊！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2014/07/05/2014-07-05-taiwan/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Travel">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Random Walks">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2014/07/05/2014-07-05-taiwan/" class="post-title-link" itemprop="url">台湾之行</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-07-05 22:47:38" itemprop="dateCreated datePublished" datetime="2014-07-05T22:47:38+08:00">2014-07-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2015-11-21 11:08:14" itemprop="dateModified" datetime="2015-11-21T11:08:14+08:00">2015-11-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Travel/" itemprop="url" rel="index"><span itemprop="name">Travel</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一</p>
-<p>这是一场说走就走的旅行：一个月前计划出行，两个星期前拿到出入台证，上周日动身，这周六回到香港。</p>
-<p>我们不走寻常路：桃园机场直奔日月潭；挺进清境农场；顺着中横公路，越过合欢山，游览太鲁阁，夜宿花莲七星潭；沿着环岛公路南下垦丁；一路北上从“国境之南“奔向台北。因为我们有个NB的自驾天王，江湖人称NBHE。</p>
-<p>这是一场毕业旅行，也是登顶之旅。四人出行，两位同伴即将PhD毕业，一位同伴刚晋升Prof。作为他们的小伙伴，有幸参与。领略大好河山同时，也沾点喜气。</p>
-<p>二</p>
-<p>台湾对我来说，不算陌生。生活在距离台湾最近的海岛上，我是看着台湾电视（比如中视、华视、台视、民视）、听着台湾电台长大的。因为电视总是低频接收，需要很高的外置天线，也需要与省台互拼功率。我们总是两个人，一人在外摇晃天线调整方位，一人在室内肉眼观察接收状况。信号是好时坏，遇到精彩节目时，总是需要在广告期间做调整。常有不如意，经历过暴跳如雷，也进化成淡然处之。</p>
-<p>那时电视的节目比内地好看多了：有流行的电视剧，经常有最新武装、台剧、韩剧；有旅游节目，台湾的世界的；也有搞笑的娱乐节目，比如吴宗宪；广告的平均水平也高不少。我也经常听台湾电台打榜，台湾的榜单总是比内地的好听。也常有一些政治辩论节目，闽南语电台，光怪陆离的鬼片、军情教育片、宗教宣讲片，应有尽有。</p>
-<p>这就是记忆中的五颜六色的台湾：新奇恶有趣。长大以后，政治倾向的影响加上对中华文化的深入，让我对台湾社会充满好感。</p>
-<p>再长大一点，见过更多的世界之后，台湾的面目也渐渐模糊起来，许多东西，已经见怪不怪了，内地乃至香港甚至都超越了。这次的旅行希望能找到一点记忆中的色彩。</p>
-<p>三</p>
-<p>总体来说，台湾没有让我失望，自然风景与人文风景俱佳。这里有山、有水、有海、有人。</p>
-<p>宝岛的海自然是一大特色。东侧的太平洋，色彩与味道与我家的海差不多，称奇之处在于苏花公路上很多海岸边就是高山悬崖，更为刺激，垦丁的南中国海的色彩更为艳丽，基础设施更为完善。海并没有给我太大的刺激，但依然带来一种喜悦—一种融入海岛人血液中的喜悦。</p>
-<p>最让我惊奇的是，台湾3000米以上的高山有几十座，冬季有些山竟然有雪。大海与高山兼得，实在难得。与雄伟的高山相比，气势上可能稍逊一筹，但是也别有风味。在3000米高山上小登200米，竟有一点喘不过气，也可算是一个难得的锻炼场所。此外，太鲁阁的峡谷也颇为惊险，也增色不少。</p>
-<p>这次旅行没有深入围观台湾市民的生活，只是在夜市逛了逛。深夜在夜市吃个小炒，然后看世足也算满惬意的。台北的城市建筑总体偏旧也偏矮，带有浓浓的闽南气息。机车在这里非常流行，颇具小镇气息。物价看过去比香港便宜，也应该比内地的大城市便宜。遇到的商店服务员与市民都挺友好与热情，比饱受自由行煎熬的港人更有生气一点。而且台湾南北相差不远，交通也很便利，似乎更适合生活。</p>
-<p>说实话，台湾是我心目中理想的居所之一。可惜这次也只是短暂停留，无法细心品味，希望以后能有机会来台湾交流，待上一段时间。</p>
-<p>四</p>
-<p>去台湾旅游的时候，<a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/%E5%A4%AA%E9%99%BD%E8%8A%B1%E5%AD%B8%E9%81%8B">太阳花学运</a>已经过去很久了。</p>
-<p>有喜有忧。喜于这个社会具有一些民主元素，可以释放社会的压力，更有活力；忧于所反对的与大陆进一步拉近关系，对于两岸融合加深互信不利。不过换个角度，不想靠的太近也是有道理的，这个就不需要进一步解释了。</p>
-<p>希望台湾未来更好，也希望大陆未来更好。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2014/05/06/2014-05-06-xiang-ji-xuan-zhi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Travel">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Random Walks">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2014/05/06/2014-05-06-xiang-ji-xuan-zhi/" class="post-title-link" itemprop="url">项脊轩志</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-05-06 11:13:38" itemprop="dateCreated datePublished" datetime="2014-05-06T11:13:38+08:00">2014-05-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2014-10-04 21:41:41" itemprop="dateModified" datetime="2014-10-04T21:41:41+08:00">2014-10-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>归有光  《项脊轩志》</p>
-<p>文中真挚的情感，每次都会被感动。</p>
-<p>其一</p>
-<blockquote>
-<p>娘以指叩门扉曰：‘儿寒乎？欲食乎？’吾从板外相为应答。</p>
-</blockquote>
-<p>其二</p>
-<blockquote>
-<p>庭有枇杷树，吾妻死之年所手植也，今已亭亭如盖矣。”</p>
-</blockquote>
-<p>离家前，是为记。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://youlizhao.github.io/blog/2014/05/04/2014-05-04-wu-yue-xiao-ji/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Travel">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Random Walks">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2014/05/04/2014-05-04-wu-yue-xiao-ji/" class="post-title-link" itemprop="url">五月小记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2014-05-04 17:14:58" itemprop="dateCreated datePublished" datetime="2014-05-04T17:14:58+08:00">2014-05-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2014-05-10 13:02:24" itemprop="dateModified" datetime="2014-05-10T13:02:24+08:00">2014-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一</p>
-<p>五一长假，回家休息了。加上过去的复活节假期，休息了有半个月。这回假期也学乖了，不去查邮箱了，专心的干休闲的事情，比如看电影，上网，看电视。大概心境变的更贴近生活了。</p>
-<p>过去的几个月，完成了一篇论文，马上要动手第二篇论文，争取八月份解决，这样按时毕业大概没有什么问题了。这是一件值得开心的事情。</p>
-<p>悲伤的事情是，本来打算暑假去美国待三个月，可是申请B1签证没通过。当时太轻视了签证申请的事情，没有理解B1&#x2F;B2的禁忌。这算是一个不小的遗憾。此外这学期课上的很郁闷，只上了一门理论课，但是没听懂居多，作业也完成的不理想，大大打击了我作理论研究的梦想。</p>
-<p>二</p>
-<p>过去的一个月，还有一个关键词，华为。四月底参观了华为坂田基地，见识了中央研究院的实验室与工程师。遗憾的是，混在中山大学的PhD中，没有获得更准确的针对香港博士的信息。</p>
-<p>总体环境与我预计的差不多，硬件条件不算太差，办公室看过去还算宽敞，实验设备还会更专业点。软件环境，觉得自己大致上还能够的着平均水平，可能略高一点但是也不会有太大的优势。</p>
-<p><strong>2012实验室</strong><br>去了一趟华为总部，还有一点收获就是了解了华为2012实验室的组织结构。2012实验室下面应该主要有这几个部门：中央硬件院、中央软件院、中央研究院、海思半导体。可能还包括在香港的那个诺亚方舟实验室。</p>
-<p>其中中央研究院下面又有很多实验室，比如通讯技术实验室（CT Lab），信息技术实验室（IT Lab，别名香农实验室？），媒体实验室。通讯技术下面可能根据不同的研究方向又有横向划分：比如热门的GigaWiFi, 5G。</p>
-<p>这些命名看起来还是挺有趣的。很多细节还是空白，网络上能找到的信息太少，希望明年再去的时候能弄的更清楚。</p>
-<p><strong>华为的风格</strong><br>当年觉得华为过于激进，虽然现在也不是很欣赏这种风格，但是也能理解华为的立场，IT企业不狠一点立足都是一个问题。现在华为想要保持强势，就必须要尝试控制上游 - 科研，抢夺话语权。这也是华为需要PhD的出发点。</p>
-<p>华为一直强调有价值的创新，不知道研究院的发展模式会怎样？像MSRA那样各个Group的招牌就是在各大会议发论文；还是像Google那样结合一线做研究，扫尾阶段才想起写篇论文？</p>
-<p>我想了想，Google的风格对公司可能会更靠谱点，研究的东西对公司业务有直接的推动作用。那些高瞻远瞩的部分就留给顶级高校来尝试好了，给点钱保持良好关系，提出新问题引导研究，跟踪高校的新技术，这样看起来更有针对性。不过也堵死了最革命性的研究的可能性，希望能在稍微“自由“一点的高校这里得到发展。</p>
-<p>此外，感觉在大企业，技术推动力的影响在不断减弱。而且在ICT这个成熟的行业，引领时代的技术越来越少，商业的力量应该会发挥越来越重要的作用。大概ICT技术的黄金时代已经过去了，其实这对于做一流技术的人算是一种悲哀。希望未来能有一个突破性的技术再次来引导这个潮流，甚至创造出新的需求。</p>
-<p>三</p>
-<p>放假期间，阅读了两篇关于职业的文章，感觉写的还是有点深度：  </p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_6a494de50101aip1.html">慎入体制内 给正在求职的同学们</a>    </li>
-<li><a target="_blank" rel="noopener" href="http://www.openlab.co/forums/thread/1012161/1">通信十年</a></li>
-</ul>
-<p>一个是关于大环境，一个是关于通信行业。通信行业看起来处于平稳时期了，悲观点看的话还处于下坡期。可能传统通信的玩家会越来越少，就看能不能内生出可持续盈利的方向。</p>
-<p>另外第二个文章点到了移动互联网行业，这个看起来目前很火，不过离专业稍微远了点。感觉有一些机会，不过时机还没有成熟，想法也没有成熟。等以后有机会整理一下。</p>
-<p>回到自身，职业回报与行业前景有很大关系，随着潮流往高处走，灵活一点大概总没有错。如果以后通信业触底了，跳出去也能安慰自己能往高出走，也算是一种欣慰。需要再观察观察，学习职场的规则，学习行业的逻辑。</p>
-<p>当年误打误撞闯入这个行业，现在想来还是鲁莽了一点，不过也没有退路了。一定要smart一点，大概是这几年最大的收获。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/8/">8</a><a class="extend next" rel="next" href="/blog/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1298,7 +1317,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
