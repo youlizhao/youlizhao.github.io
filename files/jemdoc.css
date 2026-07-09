@@ -650,7 +650,28 @@ p.pub_link{
     color: #888;
 }
 
-/* Highlighting for important info */
+/* ============================================
+   HIGHLIGHTING - Custom text color highlights
+   ============================================ */
+
+/* highlight: new / accepted papers */
+.hl-new {
+    color: #0D7377;
+}
+
+/* highlight: awards, best paper, important notices */
+.hl-award {
+    color: #C0392B;
+    font-weight: bold;
+}
+
+/* highlight: inline emphasis inside hl-new blocks */
+.hl-award-inline {
+    color: #C0392B;
+    font-weight: bold;
+}
+
+/* Highlighting for important info (background-based) */
 .highlight {
     background-color: #fffacd;
     padding: 2px 4px;
