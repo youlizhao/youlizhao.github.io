@@ -678,6 +678,72 @@ p.pub_link{
     border-radius: 3px;
 }
 
+/* Metadata shown above the representative publication list */
+.pub-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35em 1.2em;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0.45em 0 1em;
+    padding: 0.55em 0.75em;
+    border-left: 3px solid #224b8d;
+    background: #f5f7fb;
+    color: #555;
+    font-size: 92%;
+    line-height: 1.45;
+}
+
+.pub-meta-label {
+    margin-right: 0.25em;
+    color: #224b8d;
+    font-weight: bold;
+}
+
+.pub-symbol {
+    color: #C0392B;
+    font-weight: bold;
+}
+
+.pub-meta a {
+    display: inline-block;
+    padding: 0.05em 0.5em;
+    border: 1px solid #b8c6dc;
+    border-radius: 999px;
+    background: #fff;
+    color: #224b8d;
+    font-weight: bold;
+    line-height: 1.35;
+}
+
+.pub-meta a:hover {
+    border-color: #224b8d;
+    background: #eef3fa;
+    text-decoration: none;
+}
+
+.pub-meta-item + .pub-meta-item {
+    padding-left: 1.2em;
+    border-left: 1px solid #ccd5e3;
+}
+
+@media screen and (max-width: 600px) {
+    .pub-meta {
+        display: block;
+    }
+
+    .pub-meta-item {
+        display: block;
+    }
+
+    .pub-meta-item + .pub-meta-item {
+        margin-top: 0.35em;
+        padding-left: 0;
+        border-left: none;
+    }
+}
+
 /* Project list styling */
 #layout-content ul li {
     line-height: 1.5;
